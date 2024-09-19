@@ -13,7 +13,7 @@
       <img src="./assets/0.13.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2024-09-19T15:20:17-06:00">2024-09-19T15:20:17-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2024-09-19T15:53:10-06:00">2024-09-19T15:53:10-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -22,14 +22,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="green">
-  97.65%
+  100.0%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         59.53
+         60.75
        </span>
     </span> hits/line
     )
@@ -42,11 +42,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>298</b> relevant lines,
-    <span class="green"><b>291</b> lines covered</span> and
-    <span class="red"><b>7</b> lines missed. </span>
+    <b>292</b> relevant lines,
+    <span class="green"><b>292</b> lines covered</span> and
+    <span class="red"><b>0</b> lines missed. </span>
     (<span class="green">
-  97.65%
+  100.0%
 </span>
 )
   </div>
@@ -82,12 +82,12 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#e3b3ab05c404be82325fc52196fbb9cc852c372c" class="src_link" title="lib/stat_tracker.rb">lib/stat_tracker.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">96.22 %</td>
-            <td class="cell--number">385</td>
-            <td class="cell--number">185</td>
-            <td class="cell--number">178</td>
-            <td class="cell--number">7</td>
-            <td class="cell--number">19.65</td>
+            <td class="green strong cell--number t-file__coverage">100.00 %</td>
+            <td class="cell--number">372</td>
+            <td class="cell--number">179</td>
+            <td class="cell--number">179</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">20.32</td>
             
           </tr>
         
@@ -474,7 +474,7 @@
     <h3>lib/stat_tracker.rb</h3>
     <h4>
       <span class="green">
-  96.22%
+  100.0%
 </span>
 
       lines covered
@@ -483,9 +483,9 @@
     
 
     <div class="t-line-summary">
-      <b>185</b> relevant lines.
-      <span class="green"><b>178</b> lines covered</span> and
-      <span class="red"><b>7</b> lines missed.</span>
+      <b>179</b> relevant lines.
+      <span class="green"><b>179</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
 
     
@@ -1572,7 +1572,9 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="101">
+          <li class="covered" data-hits="2" data-linenumber="101">
+            
+              <span class="hits">2</span>
             
 
             
@@ -1592,7 +1594,9 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="103">
+          <li class="covered" data-hits="2" data-linenumber="103">
+            
+              <span class="hits">2</span>
             
 
             
@@ -1602,7 +1606,9 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="104">
+          <li class="covered" data-hits="72" data-linenumber="104">
+            
+              <span class="hits">72</span>
             
 
             
@@ -1632,7 +1638,9 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="107">
+          <li class="covered" data-hits="72" data-linenumber="107">
+            
+              <span class="hits">72</span>
             
 
             
@@ -1662,7 +1670,9 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="110">
+          <li class="covered" data-hits="72" data-linenumber="110">
+            
+              <span class="hits">72</span>
             
 
             
@@ -1672,7 +1682,9 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="111">
+          <li class="covered" data-hits="72" data-linenumber="111">
+            
+              <span class="hits">72</span>
             
 
             
@@ -1702,7 +1714,9 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="114">
+          <li class="covered" data-hits="2" data-linenumber="114">
+            
+              <span class="hits">2</span>
             
 
             
@@ -4382,24 +4396,24 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="356">
-            
-
-            
-
-            <code class="ruby">      # next unless team.team_id == team_id</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="32" data-linenumber="357">
+          <li class="covered" data-hits="32" data-linenumber="356">
             
               <span class="hits">32</span>
             
 
             
 
-            <code class="ruby">          team_info[:team_id] = team.team_id, </code>
+            <code class="ruby">      if team.team_id == team_id</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="357">
+            
+
+            
+
+            <code class="ruby">    </code>
           </li>
         </div>
       
@@ -4409,17 +4423,19 @@
 
             
 
-            <code class="ruby">          team_info[:franchise_id] = team.franchiseid, </code>
+            <code class="ruby">      team_info = {</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="359">
+          <li class="covered" data-hits="1" data-linenumber="359">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">          team_info[:team_name] = team.teamname, </code>
+            <code class="ruby">          team_id: team.team_id, </code>
           </li>
         </div>
       
@@ -4429,7 +4445,7 @@
 
             
 
-            <code class="ruby">          team_info[:abbreviation] = team.abbreviation, </code>
+            <code class="ruby">          franchise_id: team.franchiseid, </code>
           </li>
         </div>
       
@@ -4439,7 +4455,7 @@
 
             
 
-            <code class="ruby">          team_info[:link] = team.link</code>
+            <code class="ruby">          team_name: team.teamname, </code>
           </li>
         </div>
       
@@ -4449,12 +4465,64 @@
 
             
 
+            <code class="ruby">          abbreviation: team.abbreviation, </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="363">
+            
+
+            
+
+            <code class="ruby">          link: team.link</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="364">
+            
+
+            
+
+            <code class="ruby">      }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="365">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        break</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="366">
+            
+
+            
+
+            <code class="ruby">      end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="367">
+            
+
+            
+
             <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="363">
+          <li class="covered" data-hits="1" data-linenumber="368">
             
               <span class="hits">1</span>
             
@@ -4466,223 +4534,17 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="364">
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="365">
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="366">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  def create_team_goals_and_games</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="367">
-            
-
-            
-
-            <code class="ruby">    #need to calculate the total number of goals and total number of games played by each team so we can get the average number of goals scored per game</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="368">
-            
-              <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    team_goals_and_games = {}</code>
-          </li>
-        </div>
-      
-        <div>
           <li class="never" data-hits="" data-linenumber="369">
             
 
             
 
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="370">
-            
-              <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    @game_teams.each do |game_team| </code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="72" data-linenumber="371">
-            
-              <span class="hits">72</span>
-            
-
-            
-
-            <code class="ruby">      team_id = game_team.team_id</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="372">
-            
-
-            
-
-            <code class="ruby">      #iterate over each game_team and identifies the team id for each team</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="373">
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="72" data-linenumber="374">
-            
-              <span class="hits">72</span>
-            
-
-            
-
-            <code class="ruby">      team_goals_and_games[team_id] ||= { goals: 0, games: 0 }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="375">
-            
-
-            
-
-            <code class="ruby">      #create an entry for each team and include a default value</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="376">
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="72" data-linenumber="377">
-            
-              <span class="hits">72</span>
-            
-
-            
-
-            <code class="ruby">      team_goals_and_games[team_id][:goals] += game_team.goals</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="72" data-linenumber="378">
-            
-              <span class="hits">72</span>
-            
-
-            
-
-            <code class="ruby">      team_goals_and_games[team_id][:games] += 1</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="379">
-            
-
-            
-
-            <code class="ruby">      #add goals and games every time that team id is identified </code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="380">
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="381">
-            
-              <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    team_goals_and_games</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="382">
-            
-
-            
-
-            <code class="ruby">    #return the hash</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="383">
-            
-
-            
-
             <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="384">
+          <li class="never" data-hits="" data-linenumber="370">
             
 
             
@@ -4692,7 +4554,17 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="385">
+          <li class="never" data-hits="" data-linenumber="371">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="372">
             
 
             
@@ -6440,7 +6312,7 @@
 
             
 
-            <code class="ruby">        expect(@stat_tracker.team_info(52)).to eq({</code>
+            <code class="ruby">        expect(@stat_tracker.team_info(&quot;53&quot;)).to eq({</code>
           </li>
         </div>
       
@@ -6450,7 +6322,7 @@
 
             
 
-            <code class="ruby">          :team_id =&gt; &quot;52&quot;, </code>
+            <code class="ruby">          :team_id =&gt; &quot;53&quot;, </code>
           </li>
         </div>
       

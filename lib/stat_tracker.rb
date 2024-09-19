@@ -353,14 +353,20 @@ class StatTracker
     team_info ={}
 
     @teams.each do |team|
-      # next unless team.team_id == team_id
-          team_info[:team_id] = team.team_id, 
-          team_info[:franchise_id] = team.franchiseid, 
-          team_info[:team_name] = team.teamname, 
-          team_info[:abbreviation] = team.abbreviation, 
-          team_info[:link] = team.link
+      if team.team_id == team_id
+    
+      team_info = {
+          team_id: team.team_id, 
+          franchise_id: team.franchiseid, 
+          team_name: team.teamname, 
+          abbreviation: team.abbreviation, 
+          link: team.link
+      }
+        break
+      end
     end
     team_info
   end
+
 
 end
