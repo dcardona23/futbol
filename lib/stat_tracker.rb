@@ -349,4 +349,18 @@ class StatTracker
     find_team_name(tackles_tracker.min[0])
   end
 
+  def team_info(team_id)
+    team_info ={}
+
+    @teams.each do |team|
+      # next unless team.team_id == team_id
+          team_info[:team_id] = team.team_id, 
+          team_info[:franchise_id] = team.franchiseid, 
+          team_info[:team_name] = team.teamname, 
+          team_info[:abbreviation] = team.abbreviation, 
+          team_info[:link] = team.link
+    end
+    team_info
+  end
+
 end
