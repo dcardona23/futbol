@@ -122,6 +122,19 @@ RSpec.describe StatTracker do
       end
     end
 
+    describe "#most_tackles" do
+      it "can return the team with the most total tackles based on season" do
+        expect(@stat_tracker.most_tackles("2012030221")).to eq("FC Dallas")
+      end
+    end
+
+    describe "#fewest_tackles" do
+    it "can return the team with the fewest total tackles based on season" do
+      expect(@stat_tracker.fewest_tackles("2012030221")).to eq("Atlanta United")
+    end
+  end
+
+
     describe '#seasons'
       it 'identifies the season in which a game was played' do
         expect(@stat_tracker.identify_game_season).to be_a(Hash)
