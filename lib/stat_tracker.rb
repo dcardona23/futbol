@@ -336,17 +336,17 @@ class StatTracker
     team_records[team_id] ||= {tackles: 0}
     team_records[team_id][:tackles] += tackles
     end
-  team_records
-end
+    team_records
+  end
 
-def most_tackles(season)
-  tackles_tracker = tackles(season)
-  find_team_name(tackles_tracker.max[0])
-end
+  def most_tackles(season)
+    tackles_tracker = tackles(season)
+    find_team_name(tackles_tracker.max[0])
+  end
 
-def fewest_tackles(season)
-  tackles_tracker = tackles(season)
-  find_team_name(tackles_tracker.min[0])
-end
+  def fewest_tackles(season)
+    tackles_tracker = tackles(season)
+    find_team_name(tackles_tracker.min[0])
+  end
 
 end
