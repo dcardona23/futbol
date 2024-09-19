@@ -377,12 +377,55 @@ end
 
 def most_tackles(season)
   tackles_tracker = tackles(season)
-  find_team_name(tackles_tracker.max[0])
+  most = tackles_tracker.max_by {|team,tackles| tackles[:tackles]}
+  find_team_name(most[0])
 end
 
 def fewest_tackles(season)
   tackles_tracker = tackles(season)
-  find_team_name(tackles_tracker.min[0])
+  min = tackles_tracker.min_by {|team,tackles| tackles[:tackles]}
+  find_team_name(min[0])
 end
 
+def opponent_record(team_id)
+  #using game_teams to get a record of losses and wins against the team provided
+  opponent_records = {}
+  @games.each do |game|
+    next unless game.away_team_id == team_id || game.home_team_id == team_id
+      team_home = game.home_team_id
+      team_away = game.away_team_id
+      if game.away_team_id ==team_id
+         opponent_records[team_home] ||= {wins_against: 0, loss_against: 0, total_games:0}
+         opponent_records[team_home][:total_games] +=1
+         opponent_records[team_home][:wins_against] += 1 if game.away_goals < game.home_goals
+
+      elsif game.home_team_id ==team_id
+        opponent_records[team_away] ||= {wins_against: 0, loss_against: 0, total_games:0}
+        opponent_records[team_away][:total_games] +=1
+        opponent_records[team_away][:wins_against] += 1 if game.away_goals > game.home_goals
+      end
+    end
+    win_percentages = {}
+    opponent_records.each do |team_id,record|
+      win_percentages[team_id] = record[:wins_against].to_f/record[:total_games]
+    end
+    win_percentages
+  end
+
+  def favorite_opponent(team_id)
+    records = opponent_record(team_id)
+    favorite_opponent = records.max_by do |team, percentage|
+      percentage
+    end
+    find_team_name(favorite_opponent[0])
+  end
+
+  def rival(team_id)
+    records=opponent_record(team_id)
+    rival = records.min_by do |team, percentage|
+      percentage
+    end
+    find_team_name(rival[0])
+  end
+  
 end
