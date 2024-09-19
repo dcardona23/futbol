@@ -322,4 +322,31 @@ class StatTracker
     win_percentages.max_by { |coach, percentage|
       percentage }.first
   end
+
+  def tackles(season)
+    team_records = {}
+    season_year = season[0..3]
+
+    @game_teams.each do |game|
+      next unless game.game_id[0..3] == season_year
+  
+    team_id = game.team_id
+    tackles = game.tackles
+    #require "pry"; binding.pry
+    team_records[team_id] ||= {tackles: 0}
+    team_records[team_id][:tackles] += tackles
+    end
+  team_records
+end
+
+def most_tackles(season)
+  tackles_tracker = tackles(season)
+  find_team_name(tackles_tracker.max[0])
+end
+
+def fewest_tackles(season)
+  tackles_tracker = tackles(season)
+  find_team_name(tackles_tracker.min[0])
+end
+
 end

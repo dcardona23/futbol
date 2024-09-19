@@ -117,4 +117,17 @@ RSpec.describe StatTracker do
         expect(@stat_tracker.worst_coach("20122013")).to eq("John Tortorella")
       end
     end
+
+    describe "#most_tackles" do
+      it "can return the team with the most total tackles based on season" do
+        expect(@stat_tracker.most_tackles("2012030221")).to eq("FC Dallas")
+      end
+    end
+
+    describe "#fewest_tackles" do
+    it "can return the team with the fewest total tackles based on season" do
+      expect(@stat_tracker.fewest_tackles("2012030221")).to eq("Atlanta United")
+    end
+  end
+
   end
