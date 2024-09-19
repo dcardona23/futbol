@@ -133,13 +133,22 @@ RSpec.describe StatTracker do
     describe "#team_info" do
       it "can return a hash with key/value paris for the following attributes:
       team_id, franchise_id, team_name, abbreviation, and link" do
+        
         expect(@stat_tracker.team_info("53")).to eq({
           :team_id => "53", 
           :franchise_id => "28", 
           :team_name => "Columbus Crew SC",
           :abbreviation => "CCS",
           :link => "/api/v1/teams/53"
-      })
+          })
+
+      expect(@stat_tracker.team_info("1")).to eq({
+         :team_id => "1", 
+         :franchise_id => "23", 
+         :team_name => "Atlanta United",
+         :abbreviation => "ATL",
+         :link => "/api/v1/teams/1"
+          })
       end
     end
   end
