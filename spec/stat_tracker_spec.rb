@@ -48,13 +48,17 @@ RSpec.describe StatTracker do
 
     describe '#scoring' do 
         it 'can identify the best offense' do
-            # require 'pry'; binding.pry
             expect(@stat_tracker.best_offense).to eq("Toronto FC")
         end
 
         it 'can identify the worst offense' do
             expect(@stat_tracker.worst_offense).to eq("Atlanta United")
         end
+
+        xit 'calculates a teams accuracy by season' do
+          expect(@stat_tracker.calculate_goals_ratio_by_season).to be_a(Hash)
+        end
+
     end
 
     describe "#count_of_games_by_season" do
@@ -129,5 +133,11 @@ RSpec.describe StatTracker do
       expect(@stat_tracker.fewest_tackles("2012030221")).to eq("Atlanta United")
     end
   end
+
+
+    describe '#seasons'
+      it 'identifies the season in which a game was played' do
+        expect(@stat_tracker.identify_game_season).to be_a(Hash)
+      end
 
   end
