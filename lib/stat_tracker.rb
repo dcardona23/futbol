@@ -372,8 +372,8 @@ class StatTracker
     team_records[team_id] ||= {tackles: 0}
     team_records[team_id][:tackles] += tackles
     end
-  team_records
-end
+    team_records
+  end
 
 def most_tackles(season)
   tackles_tracker = tackles(season)
@@ -381,9 +381,9 @@ def most_tackles(season)
   find_team_name(most[0])
 end
 
-def fewest_tackles(season)
-  tackles_tracker = tackles(season)
-  min = tackles_tracker.min_by {|team,tackles| tackles[:tackles]}
+  def fewest_tackles(season)
+    tackles_tracker = tackles(season)
+    min = tackles_tracker.min_by {|team,tackles| tackles[:tackles]}
   find_team_name(min[0])
 end
 
@@ -426,6 +426,26 @@ def opponent_record(team_id)
       percentage
     end
     find_team_name(rival[0])
-  end
+    end
   
+  def team_info(team_id)
+    team_info ={}
+
+    @teams.each do |team|
+      if team.team_id == team_id
+    
+      team_info = {
+          team_id: team.team_id, 
+          franchise_id: team.franchiseid, 
+          team_name: team.teamname, 
+          abbreviation: team.abbreviation, 
+          link: team.link
+      }
+        break
+      end
+    end
+    team_info
+  end
+
+
 end
