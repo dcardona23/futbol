@@ -271,20 +271,22 @@ class StatTracker
     team_goals_and_games = home_create_team_goals_and_games
     #use the create team goals and games method
   
-      team_goals_and_games.map do |team_id, stats| 
+      x= team_goals_and_games.map do |team_id, stats| 
       [team_id, stats[:goals].to_f / stats[:games]]
 
     end.to_h
   end
   
-  def highest_scoring_home
-    highest_scoring=home_calculate_average_goals_per_team.max
-    find_team_name(highest_scoring[0])
+  def highest_scoring_home_team
+    highest_scoring=home_calculate_average_goals_per_team
+    highest=highest_scoring.max_by {|team,scoring_percentage| scoring_percentage }
+    find_team_name(highest[0])
   end
   
-  def lowest_scoring_home
-    lowest_scoring=home_calculate_average_goals_per_team.min
-    find_team_name(lowest_scoring[0])
+  def lowest_scoring_home_team
+    lowest_scoring=home_calculate_average_goals_per_team
+    lowest=lowest_scoring.min_by {|team,scoring_percentage| scoring_percentage }
+    find_team_name(lowest[0])
   end
 
   def winningest_coach(season)

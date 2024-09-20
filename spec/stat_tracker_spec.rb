@@ -98,13 +98,13 @@ RSpec.describe StatTracker do
 
     describe "highest_scoring_home" do
       it "can return the team with the highest average goals at home" do
-        expect(@stat_tracker.highest_scoring_home).to eq("FC Dallas")
+        expect(@stat_tracker.highest_scoring_home_team).to eq("FC Dallas")
       end
     end
     
     describe "lowest_scoring_home" do
       it "can return the team with the lowest average goals at home" do
-        expect(@stat_tracker.lowest_scoring_home).to eq("Atlanta United")
+        expect(@stat_tracker.lowest_scoring_home_team).to eq("Houston Dynamo")
       end
     end
 
