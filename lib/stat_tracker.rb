@@ -116,7 +116,8 @@ class StatTracker
     @game_teams.each do |game_team|
       game_id = game_team.game_id
       team_id = game_team.team_id
-      game_record = @games.find { |game| game.game_id.to_s == game_id.to_s }
+
+      game_record = find_game_record(game_id)
       next unless game_record
   
       season_year = game_record.season
@@ -131,6 +132,9 @@ class StatTracker
     game_stats
   end
 
+  def find_game_record(game_id)
+    @games.find { |game| game.game_id.to_s == game_id.to_s }
+  end
   
   def calculate_average_goals_per_team
     team_goals_and_games = create_team_goals_and_games
@@ -423,12 +427,10 @@ def opponent_record(team_id)
 
     game_stats.each do |game_id, data| 
       season_year = data[:season_year]
-      
       season_accuracy_ratios[season_year] ||= {}
 
       data[:teams].each do |team_id, stats|
         season_accuracy_ratios[season_year][team_id] ||= { total_goals: 0, total_shots: 0 }
-
         season_accuracy_ratios[season_year][team_id][:total_shots] += stats[:shots]
         season_accuracy_ratios[season_year][team_id][:total_goals] += stats[:goals]
       end
@@ -444,20 +446,13 @@ def opponent_record(team_id)
 
   def most_accurate_team(season)
     season_accuracy_ratios = calculate_season_accuracy_ratios
-    best_team_id = nil
-    best_ratio = 0.0
+    return nil unless season_accuracy_ratios[season] && !season_accuracy_ratios[season].empty?
 
-    if season_accuracy_ratios[season]
-      season_accuracy_ratios[season].each do |team_id, stats|
-        accuracy_ratio = stats[:accuracy_ratio]
-
-        if accuracy_ratio > best_ratio
-          best_ratio = accuracy_ratio
-          best_team_id = team_id
-        end
-      end
+    most_accurate_team_id, _ = season_accuracy_ratios[season].max_by do |team_id, data|
+      data[:accuracy_ratio] || 0
     end
-    find_team_name(best_team_id)
+    
+    find_team_name(most_accurate_team_id)
   end
 
   def least_accurate_team(season)

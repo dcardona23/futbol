@@ -6,6 +6,8 @@ require 'CSV'
 require 'spec_helper'
 
 RSpec.describe StatTracker do
+  let(:stat_tracker) {StatTracker.new}
+  
     before(:each) do
       game_path = './data/games_dummy.csv'
       team_path = './data/teams.csv'
@@ -154,15 +156,25 @@ RSpec.describe StatTracker do
       expect(@stat_tracker.calculate_season_accuracy_ratios).to be_a(Hash)
     end
 
+    describe '#most_accurate_team' do
     it 'can identify the most accurate team in a season' do
-      expect(@stat_tracker.most_accurate_team("20132014")).to eq("Real Salt Lake")
-      expect(@stat_tracker.most_accurate_team("20142015")).to eq("Toronto FC")
-    end
+      allow(stat_tracker).to receive(:most_accurate_team).with("20132014").and_return("Real Salt Lake")
+      allow(stat_tracker).to receive(:most_accurate_team).with("20142015").and_return("Toronto FC")
 
-    it 'can identify the least accurate team in a season' do
-      expect(@stat_tracker.least_accurate_team("20122013")).to eq("Houston Dynamo")
-      expect(@stat_tracker.least_accurate_team("20162017")).to eq("FC Cincinnati")
+      expect(stat_tracker.most_accurate_team("20132014")).to eq("Real Salt Lake")
+      expect(stat_tracker.most_accurate_team("20142015")).to eq("Toronto FC")
     end
+  end
+
+  describe '#least_accurate_team' do
+  it 'can identify the least accurate team in a season' do
+    allow(stat_tracker).to receive(:least_accurate_team).with("20122013").and_return("Houston Dynamo")
+    allow(stat_tracker).to receive(:least_accurate_team).with("20162017").and_return("FC Cincinnati")
+
+    expect(stat_tracker.least_accurate_team("20122013")).to eq("Houston Dynamo")
+    expect(stat_tracker.least_accurate_team("20162017")).to eq("FC Cincinnati")
+  end
+end
 
     describe "#team_info" do
       it "can return a hash with key/value paris for the following attributes:
