@@ -436,7 +436,7 @@ def opponent_record(team_id)
 
       season_accuracy_ratios.each do |season_year, team_stats|
         team_stats.each do |team_id, totals|
-          totals[:accuracy_ratio] = (totals[:total_goals].to_f / totals[:total_shots]).round(3) unless totals[:total_shots].zero?
+          totals[:accuracy_ratio] = (totals[:total_goals].to_f / totals[:total_shots]) unless totals[:total_shots].zero?
         end
       end
     season_accuracy_ratios
