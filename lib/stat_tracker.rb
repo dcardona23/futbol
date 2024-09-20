@@ -97,35 +97,33 @@ class StatTracker
   end
 
   def create_team_goals_and_games
-    #need to calculate the total number of goals and total number of games played by each team so we can get the average number of goals scored per game
     team_goals_and_games = {}
 
     @game_teams.each do |game_team| 
       team_id = game_team.team_id
-      #iterate over each game_team and identifies the team id for each team
-
+      
       team_goals_and_games[team_id] ||= { goals: 0, games: 0 }
-      #create an entry for each team and include a default value
-
+    
       team_goals_and_games[team_id][:goals] += game_team.goals
       team_goals_and_games[team_id][:games] += 1
-      #add goals and games every time that team id is identified 
     end
     team_goals_and_games
-    #return the hash
   end
 
   def calculate_game_stats
     game_stats = {}
 
-    @game_teams.each do |game_team| 
+    @game_teams.each do |game_team|
       game_id = game_team.game_id
       team_id = game_team.team_id
-
-      game_stats[game_id] ||= { teams: {} }
-
+      game_record = @games.find { |game| game.game_id.to_s == game_id.to_s }
+      next unless game_record
+  
+      season_year = game_record.season
+  
+      game_stats[game_id] ||= { season_year: season_year, teams: {} }
       game_stats[game_id][:teams][team_id] ||= { goals: 0, games: 0, shots: 0 }
-
+      
       game_stats[game_id][:teams][team_id][:goals] += game_team.goals
       game_stats[game_id][:teams][team_id][:games] += 1
       game_stats[game_id][:teams][team_id][:shots] += game_team.shots
@@ -133,19 +131,7 @@ class StatTracker
     game_stats
   end
 
-  def identify_game_season 
-    game_season = {}
-
-    @games.each do |game|
-      game_id = game.game_id
-      season = game.season
-
-      game_season[game_id] = season 
-    end
-    game_season
-    #hash where the game id is the key and the seeason is the value
-  end
-
+  
   def calculate_average_goals_per_team
     team_goals_and_games = create_team_goals_and_games
     team_stats = {}
@@ -428,4 +414,123 @@ def opponent_record(team_id)
     find_team_name(rival[0])
   end
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  def calculate_season_accuracy_ratios
+    game_stats = calculate_game_stats
+    season_accuracy_ratios = {}
+
+    game_stats.each do |game_id, data| 
+      season_year = data[:season_year]
+      
+      season_accuracy_ratios[season_year] ||= {}
+
+      data[:teams].each do |team_id, stats|
+        season_accuracy_ratios[season_year][team_id] ||= { total_goals: 0, total_shots: 0 }
+
+        season_accuracy_ratios[season_year][team_id][:total_shots] += stats[:shots]
+        season_accuracy_ratios[season_year][team_id][:total_goals] += stats[:goals]
+      end
+    end
+
+      season_accuracy_ratios.each do |season_year, team_stats|
+        team_stats.each do |team_id, totals|
+          totals[:accuracy_ratio] = (totals[:total_goals].to_f / totals[:total_shots]).round(2) unless totals[:total_shots].zero?
+        end
+      end
+    season_accuracy_ratios
+  end
+
+  def most_accurate_team(season)
+    season_accuracy_ratios = calculate_season_accuracy_ratios
+    best_team_id = nil
+    best_ratio = 0.0
+
+    if season_accuracy_ratios.key?(season)
+      season_accuracy_ratios[season].each do |team_id, stats|
+        accuracy_ratio = stats[:accuracy_ratio]
+
+        if accuracy_ratio > best_ratio
+          best_ratio = accuracy_ratio
+          best_team_id = team_id
+        end
+      end
+    else
+    end
+    find_team_name(best_team_id)
+  end
+
+  def least_accurate_team(season)
+    season_accuracy_ratios = calculate_season_accuracy_ratios
+    worst_team_id = nil
+    worst_ratio = Float::INFINITY
+
+    if season_accuracy_ratios.key?(season)
+      season_accuracy_ratios[season].each do |team_id, stats|
+        accuracy_ratio = stats[:accuracy_ratio]
+
+        if accuracy_ratio < worst_ratio
+          worst_ratio = accuracy_ratio
+          worst_team_id = team_id
+        end
+      end
+    else
+    end
+    find_team_name(worst_team_id)
+  end
+
+
 end
