@@ -134,12 +134,6 @@ RSpec.describe StatTracker do
       end
     end
 
-
-    describe '#seasons'
-      it 'identifies the season in which a game was played' do
-        expect(@stat_tracker.identify_game_season).to be_a(Hash)
-      end
-
     describe "#favorite_opponent" do
       it "can provide team of the opponent with the lowest win percentage against team provided" do
         expect(@stat_tracker.favorite_opponent("8")).to eq("Chicago Fire")
@@ -153,7 +147,24 @@ RSpec.describe StatTracker do
       expect(@stat_tracker.rival("6")).to eq("Houston Dynamo")
       end
     end
-      
+  
+
+    it 'can calculate game stats' do
+      # require 'pry';binding.pry
+      expect(@stat_tracker.calculate_game_stats).to be_a(Hash)
+    end
+
+    it 'can calculate season accuracy ratios' do
+      expect(@stat_tracker.calculate_season_accuracy_ratios).to be_a(Hash)
+    end
+
+    it 'can identify the most accurate team in a season' do
+      expect(@stat_tracker.most_accurate_team("20122013")).to eq("FC Dallas")
+    end
+
+    it 'can identify the least accurate team in a season' do
+      expect(@stat_tracker.least_accurate_team("20122013")).to eq("Houston Dynamo")
+    end
 
     describe "#team_info" do
       it "can return a hash with key/value paris for the following attributes:
