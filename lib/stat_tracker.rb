@@ -271,7 +271,7 @@ class StatTracker
     team_goals_and_games = home_create_team_goals_and_games
     #use the create team goals and games method
   
-      x= team_goals_and_games.map do |team_id, stats| 
+      team_goals_and_games.map do |team_id, stats| 
       [team_id, stats[:goals].to_f / stats[:games]]
 
     end.to_h
@@ -279,6 +279,7 @@ class StatTracker
   
   def highest_scoring_home_team
     highest_scoring=home_calculate_average_goals_per_team
+    #require "pry" ; binding.pry
     highest=highest_scoring.max_by {|team,scoring_percentage| scoring_percentage }
     find_team_name(highest[0])
   end
@@ -498,7 +499,7 @@ def opponent_record(team_id)
 
   def away_games_only 
     away_games = @game_teams.find_all do |game_team|
-      game_team != game_team.hoa
+      game_team.hoa =="away"
     end
     away_games
   end
@@ -523,12 +524,15 @@ def opponent_record(team_id)
   end
 
   def highest_scoring_visitor
-      highest_scoring=away_calculate_average_goals_per_team.max
-      find_team_name(highest_scoring[0])
+      highest_scoring=away_calculate_average_goals_per_team
+      highest=highest_scoring.max_by {|team,scoring_percentage| scoring_percentage }
+      find_team_name(highest[0])
+
   end
 
   def lowest_scoring_visitor
-      lowest_scoring=away_calculate_average_goals_per_team.min
-      find_team_name(lowest_scoring[0])
+      lowest_scoring=away_calculate_average_goals_per_team
+      lowest=lowest_scoring.min_by {|team,scoring_percentage| scoring_percentage }
+      find_team_name(lowest[0])
   end
 end
