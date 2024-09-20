@@ -92,7 +92,7 @@ class StatTracker
       lowest
     end
     
-  def team_count
+  def count_of_teams
     @teams.size
   end
 
