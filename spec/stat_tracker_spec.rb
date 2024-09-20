@@ -155,11 +155,13 @@ RSpec.describe StatTracker do
     end
 
     it 'can identify the most accurate team in a season' do
-      expect(@stat_tracker.most_accurate_team("20122013")).to eq("FC Dallas")
+      expect(@stat_tracker.most_accurate_team("20132014")).to eq("Real Salt Lake")
+      expect(@stat_tracker.most_accurate_team("20142015")).to eq("Toronto FC")
     end
 
     it 'can identify the least accurate team in a season' do
       expect(@stat_tracker.least_accurate_team("20122013")).to eq("Houston Dynamo")
+      expect(@stat_tracker.least_accurate_team("20162017")).to eq("FC Cincinnati")
     end
 
     describe "#team_info" do

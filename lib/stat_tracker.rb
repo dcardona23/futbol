@@ -433,7 +433,7 @@ def opponent_record(team_id)
 
       season_accuracy_ratios.each do |season_year, team_stats|
         team_stats.each do |team_id, totals|
-          totals[:accuracy_ratio] = (totals[:total_goals].to_f / totals[:total_shots]).round(2) unless totals[:total_shots].zero?
+          totals[:accuracy_ratio] = (totals[:total_goals].to_f / totals[:total_shots]).round(3) unless totals[:total_shots].zero?
         end
       end
     season_accuracy_ratios
@@ -444,7 +444,7 @@ def opponent_record(team_id)
     best_team_id = nil
     best_ratio = 0.0
 
-    if season_accuracy_ratios.key?(season)
+    if season_accuracy_ratios[season]
       season_accuracy_ratios[season].each do |team_id, stats|
         accuracy_ratio = stats[:accuracy_ratio]
 
@@ -453,7 +453,6 @@ def opponent_record(team_id)
           best_team_id = team_id
         end
       end
-    else
     end
     find_team_name(best_team_id)
   end
@@ -463,7 +462,7 @@ def opponent_record(team_id)
     worst_team_id = nil
     worst_ratio = Float::INFINITY
 
-    if season_accuracy_ratios.key?(season)
+    if season_accuracy_ratios[season]
       season_accuracy_ratios[season].each do |team_id, stats|
         accuracy_ratio = stats[:accuracy_ratio]
 
@@ -472,7 +471,6 @@ def opponent_record(team_id)
           worst_team_id = team_id
         end
       end
-    else
     end
     find_team_name(worst_team_id)
   end
