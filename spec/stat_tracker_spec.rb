@@ -42,7 +42,7 @@ RSpec.describe StatTracker do
 
     describe '#teams' do 
       it 'can count the total number of teams' do
-        expect(@stat_tracker.team_count).to eq(32)
+        expect(@stat_tracker.count_of_teams).to eq(32)
       end
     end
 
@@ -53,10 +53,6 @@ RSpec.describe StatTracker do
 
         it 'can identify the worst offense' do
             expect(@stat_tracker.worst_offense).to eq("Atlanta United")
-        end
-
-        xit 'calculates a teams accuracy by season' do
-          expect(@stat_tracker.calculate_goals_ratio_by_season).to be_a(Hash)
         end
 
     end
@@ -159,11 +155,13 @@ RSpec.describe StatTracker do
     end
 
     it 'can identify the most accurate team in a season' do
-      expect(@stat_tracker.most_accurate_team("20122013")).to eq("FC Dallas")
+      expect(@stat_tracker.most_accurate_team("20132014")).to eq("Real Salt Lake")
+      expect(@stat_tracker.most_accurate_team("20142015")).to eq("Toronto FC")
     end
 
     it 'can identify the least accurate team in a season' do
       expect(@stat_tracker.least_accurate_team("20122013")).to eq("Houston Dynamo")
+      expect(@stat_tracker.least_accurate_team("20162017")).to eq("FC Cincinnati")
     end
 
     describe "#team_info" do
