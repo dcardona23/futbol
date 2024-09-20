@@ -403,7 +403,7 @@ def opponent_record(team_id)
 
   def favorite_opponent(team_id)
     records = opponent_record(team_id)
-    favorite_opponent = records.max_by do |team, percentage|
+    favorite_opponent = records.min_by do |team, percentage|
       percentage
     end
     find_team_name(favorite_opponent[0])
@@ -411,7 +411,7 @@ def opponent_record(team_id)
 
   def rival(team_id)
     records=opponent_record(team_id)
-    rival = records.min_by do |team, percentage|
+    rival = records.max_by do |team, percentage|
       percentage
     end
     find_team_name(rival[0])
