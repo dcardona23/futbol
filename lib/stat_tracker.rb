@@ -31,7 +31,7 @@ class StatTracker
             row[:season],
             row[:type],
             row[:date_time],
-            row[:away_team],
+            row[:away_team_id],
             row[:home_team_id],
             row[:away_goals].to_i,
             row[:home_goals].to_i,
@@ -115,21 +115,58 @@ class StatTracker
     #return the hash
   end
 
+  def calculate_game_stats
+    game_stats = {}
+
+    @game_teams.each do |game_team| 
+      game_id = game_team.game_id
+      team_id = game_team.team_id
+
+      game_stats[game_id] ||= { teams: {} }
+
+      game_stats[game_id][:teams][team_id] ||= { goals: 0, games: 0, shots: 0 }
+
+      game_stats[game_id][:teams][team_id][:goals] += game_team.goals
+      game_stats[game_id][:teams][team_id][:games] += 1
+      game_stats[game_id][:teams][team_id][:shots] += game_team.shots
+    end
+    game_stats
+  end
+
+  def identify_game_season 
+    game_season = {}
+
+    @games.each do |game|
+      game_id = game.game_id
+      season = game.season
+
+      game_season[game_id] = season 
+    end
+    game_season
+    #hash where the game id is the key and the seeason is the value
+  end
+
   def calculate_average_goals_per_team
     team_goals_and_games = create_team_goals_and_games
-    #use the create team goals and games method
+    team_stats = {}
 
-    team_goals_and_games.map do |team_id, stats| 
-      [team_id, stats[:goals].to_f / stats[:games]]
-    end.to_h
-    #iterate over team goals and games to identify stats by team id - create a new hash that identifies a team's total goals and divides that by the number of games that team played
-  end
+    team_goals_and_games.each do |team_id, stats| 
+        team_stats[team_id] ||= { goals: 0, games: 0 }
+        team_stats[team_id][:goals] += stats[:goals ]
+        team_stats[team_id][:games] += stats[:games]
+      end
+
+      average_goals = {}
+      team_stats.each do |team_id, stats|
+        average_goals[team_id] = stats[:goals].to_f / stats[:games]
+      end
+      average_goals
+    end
 
   def best_offense
     average_goals_per_team = calculate_average_goals_per_team 
     best_team_id = average_goals_per_team.max_by { |team_id, average_goals| average_goals }.first 
     find_team_name(best_team_id)
-    #find best team by identifying the team with the highest average goals - .first identifies team id
   end
 
   def worst_offense
@@ -141,7 +178,6 @@ class StatTracker
   def find_team_name(team_id)
     team = @teams.find { |team| team.team_id == team_id }
     team.teamname if team
-    #iterate through teams array to match each team id to a team name
   end
 
   def count_of_games_by_season
@@ -339,16 +375,59 @@ class StatTracker
     team_records
   end
 
-  def most_tackles(season)
-    tackles_tracker = tackles(season)
-    find_team_name(tackles_tracker.max[0])
-  end
+def most_tackles(season)
+  tackles_tracker = tackles(season)
+  most = tackles_tracker.max_by {|team,tackles| tackles[:tackles]}
+  find_team_name(most[0])
+end
 
   def fewest_tackles(season)
     tackles_tracker = tackles(season)
-    find_team_name(tackles_tracker.min[0])
+    min = tackles_tracker.min_by {|team,tackles| tackles[:tackles]}
+  find_team_name(min[0])
+end
+
+def opponent_record(team_id)
+  #using game_teams to get a record of losses and wins against the team provided
+  opponent_records = {}
+  @games.each do |game|
+    next unless game.away_team_id == team_id || game.home_team_id == team_id
+      team_home = game.home_team_id
+      team_away = game.away_team_id
+      if game.away_team_id ==team_id
+         opponent_records[team_home] ||= {wins_against: 0, loss_against: 0, total_games:0}
+         opponent_records[team_home][:total_games] +=1
+         opponent_records[team_home][:wins_against] += 1 if game.away_goals < game.home_goals
+
+      elsif game.home_team_id ==team_id
+        opponent_records[team_away] ||= {wins_against: 0, loss_against: 0, total_games:0}
+        opponent_records[team_away][:total_games] +=1
+        opponent_records[team_away][:wins_against] += 1 if game.away_goals > game.home_goals
+      end
+    end
+    win_percentages = {}
+    opponent_records.each do |team_id,record|
+      win_percentages[team_id] = record[:wins_against].to_f/record[:total_games]
+    end
+    win_percentages
   end
 
+  def favorite_opponent(team_id)
+    records = opponent_record(team_id)
+    favorite_opponent = records.max_by do |team, percentage|
+      percentage
+    end
+    find_team_name(favorite_opponent[0])
+  end
+
+  def rival(team_id)
+    records=opponent_record(team_id)
+    rival = records.min_by do |team, percentage|
+      percentage
+    end
+    find_team_name(rival[0])
+    end
+  
   def team_info(team_id)
     team_info ={}
 
