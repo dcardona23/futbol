@@ -176,4 +176,16 @@ RSpec.describe StatTracker do
           })
       end
     end
+
+    describe "#highest_scoring_visitor" do
+      it 'can return the visitor team with the highest scores' do
+        expect(@stat_tracker.highest_scoring_visitor).to eq("New York Red Bulls")
+      end
+    end
+
+    describe "#lowest_scoring_visitor" do
+      it 'can return the visitor team with the lowest scores' do
+        expect(@stat_tracker.lowest_scoring_visitor).to eq("Atlanta United")
+      end
+    end
   end
