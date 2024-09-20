@@ -129,10 +129,10 @@ RSpec.describe StatTracker do
     end
 
     describe "#fewest_tackles" do
-    it "can return the team with the fewest total tackles based on season" do
-      expect(@stat_tracker.fewest_tackles("2012030221")).to eq("Atlanta United")
+      it "can return the team with the fewest total tackles based on season" do
+        expect(@stat_tracker.fewest_tackles("2012030221")).to eq("Atlanta United")
+      end
     end
-  end
 
     describe "#favorite_opponent" do
       it "can provide team of the opponent with the lowest win percentage against team provided" do
@@ -147,41 +147,7 @@ RSpec.describe StatTracker do
       expect(@stat_tracker.rival("6")).to eq("Houston Dynamo")
       end
     end
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
     it 'can calculate game stats' do
       # require 'pry';binding.pry
@@ -200,4 +166,37 @@ RSpec.describe StatTracker do
       expect(@stat_tracker.least_accurate_team("20122013")).to eq("Houston Dynamo")
     end
 
+    describe "#team_info" do
+      it "can return a hash with key/value paris for the following attributes:
+      team_id, franchise_id, team_name, abbreviation, and link" do
+        
+        expect(@stat_tracker.team_info("53")).to eq({
+          :team_id => "53", 
+          :franchise_id => "28", 
+          :team_name => "Columbus Crew SC",
+          :abbreviation => "CCS",
+          :link => "/api/v1/teams/53"
+          })
+
+      expect(@stat_tracker.team_info("1")).to eq({
+         :team_id => "1", 
+         :franchise_id => "23", 
+         :team_name => "Atlanta United",
+         :abbreviation => "ATL",
+         :link => "/api/v1/teams/1"
+          })
+      end
+    end
+
+    describe "#highest_scoring_visitor" do
+      it 'can return the visitor team with the highest scores' do
+        expect(@stat_tracker.highest_scoring_visitor).to eq("New York Red Bulls")
+      end
+    end
+
+    describe "#lowest_scoring_visitor" do
+      it 'can return the visitor team with the lowest scores' do
+        expect(@stat_tracker.lowest_scoring_visitor).to eq("Atlanta United")
+      end
+    end
   end
