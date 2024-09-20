@@ -447,5 +447,40 @@ def opponent_record(team_id)
     team_info
   end
 
+  def away_games_only 
+    away_games = @game_teams.find_all do |game_team|
+      game_team != game_team.hoa
+    end
+    away_games
+  end
 
+  def away_create_team_goals_and_games
+      team_goals_and_games = {}
+      away_games_only.each do |away_game| 
+        team_id = away_game.team_id
+
+        team_goals_and_games[team_id] ||= { goals: 0, games: 0 }
+
+      team_goals_and_games[team_id][:goals] += away_game.goals
+      team_goals_and_games[team_id][:games] += 1
+    end
+      team_goals_and_games
+    end
+  def away_calculate_average_goals_per_team
+      team_goals_and_games = away_create_team_goals_and_games
+        team_goals_and_games.map do |team_id, stats| 
+        [team_id, stats[:goals].to_f / stats[:games]]
+     end.to_h
+  end
+
+  def highest_scoring_visitor
+      highest_scoring=away_calculate_average_goals_per_team.max
+      find_team_name(highest_scoring[0])
+  end
+
+  def lowest_scoring_visitor
+      lowest_scoring=away_calculate_average_goals_per_team.min
+      find_team_name(lowest_scoring[0])
+  end
+   
 end
