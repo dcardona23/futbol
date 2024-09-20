@@ -197,4 +197,11 @@ RSpec.describe StatTracker do
         expect(@stat_tracker.lowest_scoring_visitor).to eq("DC United")
       end
     end
+
+    describe "head_to_head" do
+      it 'can give win percentages for a team against all other teams' do
+        hash={"Chicago Fire"=>0.0, "Orlando Pride"=>0.0, "Seattle Sounders FC"=>1.0}
+        expect(@stat_tracker.head_to_head("8")).to eq(hash)
+      end
+    end
   end
