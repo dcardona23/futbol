@@ -132,15 +132,15 @@ RSpec.describe StatTracker do
 
     describe "#favorite_opponent" do
       it "can provide team of the opponent with the lowest win percentage against team provided" do
-        expect(@stat_tracker.favorite_opponent("8")).to eq("Chicago Fire")
-        expect(@stat_tracker.favorite_opponent("6")).to eq("Sporting Kansas City")
+        expect(@stat_tracker.favorite_opponent("8")).to eq("Seattle Sounders FC")
+        expect(@stat_tracker.favorite_opponent("6")).to eq("Houston Dynamo")
       end
     end
       
     describe "#rival" do
       it "can team of the opponent with the lowest win percentage against team provided" do
-      expect(@stat_tracker.rival("8")).to eq("Seattle Sounders FC")
-      expect(@stat_tracker.rival("6")).to eq("Houston Dynamo")
+      expect(@stat_tracker.rival("8")).to eq("Chicago Fire")
+      expect(@stat_tracker.rival("6")).to eq("Sporting Kansas City")
       end
     end
   
