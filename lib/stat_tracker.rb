@@ -184,7 +184,7 @@ class StatTracker
   end
 
   def average_goals_per_game
-    total_goals.sum / @games.size.to_f
+    (total_goals.sum / @games.size.to_f).round(2)
   end
 
   def create_season_goals_and_games
@@ -337,7 +337,7 @@ class StatTracker
 
       coach_records[coach] ||= { wins: 0, total_games: 0 }
       coach_records[coach][:total_games] += 1
-      coach_records[coach][:wins] += 1 if result == "LOSS"
+      coach_records[coach][:wins] += 1 if result == "WIN"
 
       end
       return nil if coach_records.empty?
@@ -348,7 +348,7 @@ class StatTracker
       win_percentages[coach] = record[:wins].to_f / record[:total_games]
     end
 
-    win_percentages.max_by { |coach, percentage|
+    win_percentages.min_by { |coach, percentage|
       percentage }.first
   end
 
@@ -480,12 +480,12 @@ def opponent_record(team_id)
       if team.team_id == team_id
     
       team_info = {
-          team_id: team.team_id, 
-          franchise_id: team.franchiseid, 
-          team_name: team.teamname, 
-          abbreviation: team.abbreviation, 
-          link: team.link
-      }
+          "team_id" => team.team_id, 
+          "franchise_id" => team.franchiseid, 
+          "team_name" => team.teamname, 
+          "abbreviation" => team.abbreviation, 
+          "link" => team.link
+        }
         break
       end
     end
