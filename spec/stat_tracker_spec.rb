@@ -242,4 +242,39 @@ end
     it 'identifies a teams worst loss' do
       expect(@stat_tracker.worst_loss(3)).to eq(1)
     end
+
+  describe "seasonal_summary" do
+    it "calculates a team's stats by season" do
+      hash_team_6 =
+      {"20122013"=>
+  {:postseason=>
+    {:win_percentage=>1.0,
+     :total_goals_scored=>14,
+     :total_goals_against=>8,
+     :average_goals_scored=>2.8,
+     :average_goals_against=>1.6}},
+  "20162017"=>
+  {:regular_season=>
+    {:win_percentage=>0.0,
+     :total_goals_scored=>2,
+     :total_goals_against=>3,
+     :average_goals_scored=>2.0,
+     :average_goals_against=>3.0}},
+  "20132014"=>
+  {:regular_season=>
+    {:win_percentage=>1.0,
+     :total_goals_scored=>2,
+     :total_goals_against=>1,
+     :average_goals_scored=>2.0,
+     :average_goals_against=>1.0}},
+  "20172018"=>
+  {:regular_season=>
+    {:win_percentage=>0.0,
+     :total_goals_scored=>3,
+     :total_goals_against=>3,
+     :average_goals_scored=>3.0,
+     :average_goals_against=>3.0}}}
+      expect(@stat_tracker.seasonal_summary("6")).to eq(hash_team_6)
+    end
   end
+end

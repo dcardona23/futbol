@@ -682,4 +682,82 @@ def opponent_record(team_id)
     worst_loss = losing_points_differences.values.max
     worst_loss
   end
+
+  def calculate_season_summary(team_id)
+    season_stats ={}
+    @games.each do |game|
+      next unless game.away_team_id == team_id || game.home_team_id == team_id
+      season = game.season
+      team_home = game.home_team_id
+      team_away = game.away_team_id
+      away_goals = game.away_goals
+      home_goals = game.home_goals
+      type=game.type
+      if team_away == team_id
+        if game.type == "Postseason"
+          season_stats[season] ||={postseason:{wins:0, goals_for: 0, goals_against: 0,games: 0} }
+          season_stats[season][:postseason][:goals_for] += away_goals
+          season_stats[season][:postseason][:goals_against] += home_goals
+          season_stats[season][:postseason][:games] += 1
+          if away_goals > home_goals
+            season_stats[season][:postseason][:wins] += 1
+          end
+        end
+        if game.type == "Regular Season"
+          season_stats[season] ||={regular_season:{wins:0, goals_for: 0, goals_against: 0,games: 0} }
+          season_stats[season][:regular_season][:goals_for] += away_goals
+          season_stats[season][:regular_season][:goals_against] += home_goals
+          season_stats[season][:regular_season][:games] += 1
+          if away_goals > home_goals
+            season_stats[season][:regular_season][:wins] += 1
+          end
+        end
+      else team_home == team_id
+          if game.type == "Postseason"
+            season_stats[season] ||={postseason:{wins:0, goals_for: 0, goals_against: 0,games: 0} }
+            season_stats[season][:postseason][:goals_for] += home_goals
+            season_stats[season][:postseason][:goals_against] += away_goals
+            season_stats[season][:postseason][:games] += 1
+            if away_goals < home_goals
+              season_stats[season][:postseason][:wins] += 1
+            end
+          end
+          if game.type == "Regular Season"
+            season_stats[season] ||={regular_season:{wins:0, goals_for: 0, goals_against: 0,games: 0} }
+            season_stats[season][:regular_season][:goals_for] += home_goals
+            season_stats[season][:regular_season][:goals_against] += away_goals
+            season_stats[season][:regular_season][:games] += 1
+            if away_goals < home_goals
+              season_stats[season][:regular_season][:wins] += 1
+            end
+          end
+        end
+    end
+    season_stats
+  end
+  
+  def seasonal_summary(team_id)
+    summary = {}
+    season_stats=calculate_season_summary(team_id)
+    season_stats.each do |season,data|
+  
+      if data[:regular_season] != nil
+        summary[season] ||= summary[season] ||={regular_season:{win_percentage:0, total_goals_scored: 0, total_goals_against: 0, average_goals_scored: 0, average_goals_against: 0}}
+        summary[season][:regular_season][:win_percentage] = data[:regular_season][:wins].to_f/data[:regular_season][:games]
+        summary[season][:regular_season][:total_goals_scored]=data[:regular_season][:goals_for]
+        summary[season][:regular_season][:total_goals_against]=data[:regular_season][:goals_against]
+        summary[season][:regular_season][:average_goals_scored]= data[:regular_season][:goals_for].to_f/data[:regular_season][:games]
+        summary[season][:regular_season][:average_goals_against]= data[:regular_season][:goals_against].to_f/data[:regular_season][:games]
+      end
+      if data[:postseason] != nil
+        summary[season] ||= summary[season] ||={postseason:{win_percentage:0, total_goals_scored: 0, total_goals_against: 0, average_goals_scored: 0, average_goals_against: 0}}
+        summary[season][:postseason][:win_percentage] = data[:postseason][:wins].to_f/data[:postseason][:games]
+        summary[season][:postseason][:total_goals_scored]=data[:postseason][:goals_for]
+        summary[season][:postseason][:total_goals_against]=data[:postseason][:goals_against]
+        summary[season][:postseason][:average_goals_scored]= data[:postseason][:goals_for].to_f/data[:postseason][:games]
+        summary[season][:postseason][:average_goals_against]= data[:postseason][:goals_against].to_f/data[:postseason][:games]
+      end
+    end
+    summary
+  end
 end
