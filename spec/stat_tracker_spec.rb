@@ -223,4 +223,23 @@ end
       expect(@stat_tracker.best_season(3)).to eq(nil)
       expect(@stat_tracker.worst_season("6")).to eq "20122013"
     end
+
+    it 'identifies team wins and losses' do
+      expect(@stat_tracker.calculate_team_wins(6)).to be_a(Array)
+      expect(@stat_tracker.calculate_team_wins(6).length).to eq(3)
+      expect(@stat_tracker.calculate_team_losses(6).length).to eq(0)
+      expect(@stat_tracker.calculate_team_losses(3).length).to eq(3)
+    end
+
+    it 'calculates points differences' do
+      expect(@stat_tracker.calculate_winning_points_differences(6)).to be_a(Hash)
+    end
+
+    it 'identifies a teams biggest blowout' do
+      expect(@stat_tracker.biggest_team_blowout(6)).to eq(1)
+    end
+
+    it 'identifies a teams worst loss' do
+      expect(@stat_tracker.worst_loss(3)).to eq(1)
+    end
   end

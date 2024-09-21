@@ -612,4 +612,74 @@ def opponent_record(team_id)
     end
     worst_season
   end
+
+  def calculate_team_wins(team_id)
+    team_wins = []
+
+    @game_teams.each do |game_team|
+      if game_team.team_id.to_s == team_id.to_s && game_team.result == 'WIN'
+        team_wins << game_team.game_id
+      end
+    end
+    team_wins
+  end
+
+  def calculate_team_losses(team_id)
+    team_losses = []
+
+    @game_teams.each do |game_team|
+      if game_team.team_id.to_s == team_id.to_s && game_team.result == 'LOSS'
+        team_losses << game_team.game_id
+      end
+    end
+    team_losses
+  end
+
+  def calculate_winning_points_differences(team_id)
+    team_wins = calculate_team_wins(team_id)
+    winning_points_differences = {}
+
+    @games.each do |game|
+      next unless team_wins.include?(game.game_id.to_s)
+
+      points_difference = if game.away_team_id.to_s == team_id.to_s
+        game.away_goals - game.home_goals
+      else
+        game.home_goals - game.away_goals
+      end
+
+      winning_points_differences[game.game_id] = points_difference
+    end
+    winning_points_differences
+  end
+
+  def biggest_team_blowout(team_id)
+    winning_points_differences = calculate_winning_points_differences(team_id)
+    biggest_team_blowout = winning_points_differences.values.max
+    biggest_team_blowout
+  end
+
+  def calculate_losing_points_differences(team_id)
+    team_losses = calculate_team_losses(team_id)
+    losing_points_differences = {}
+
+    @games.each do |game|
+      next unless team_losses.include?(game.game_id.to_s)
+
+      points_difference = if game.away_team_id.to_s == team_id.to_s
+        game.home_goals - game.away_goals
+      else
+        game.away_goals - game.home_goals
+      end
+
+      losing_points_differences[game.game_id] = points_difference
+    end
+    losing_points_differences
+  end
+
+  def worst_loss(team_id)
+    losing_points_differences = calculate_losing_points_differences(team_id)
+    worst_loss = losing_points_differences.values.max
+    worst_loss
+  end
 end
