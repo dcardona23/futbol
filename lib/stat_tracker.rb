@@ -184,7 +184,7 @@ class StatTracker
   end
 
   def average_goals_per_game
-    total_goals.sum / @games.size.to_f
+    (total_goals.sum / @games.size.to_f).round(2)
   end
 
   def create_season_goals_and_games
