@@ -216,4 +216,11 @@ end
         expect(@stat_tracker.head_to_head("8")).to eq(hash)
       end
     end
+
+    it 'calculates season stats' do
+      expect(@stat_tracker.calculate_season_stats).to be_a(Hash)
+      expect(@stat_tracker.calculate_season_win_percentages).to be_a(Hash)
+      expect(@stat_tracker.best_season(3)).to eq(nil)
+      expect(@stat_tracker.worst_season("6")).to eq "20122013"
+    end
   end
