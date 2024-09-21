@@ -388,14 +388,14 @@ def opponent_record(team_id)
       team_home = game.home_team_id
       team_away = game.away_team_id
       if game.away_team_id ==team_id
-         opponent_records[team_home] ||= {wins_against: 0, loss_against: 0, total_games:0}
+         opponent_records[team_home] ||= {wins_against: 0, total_games:0}
          opponent_records[team_home][:total_games] +=1
-         opponent_records[team_home][:wins_against] += 1 if game.away_goals < game.home_goals
+         opponent_records[team_home][:wins_against] += 1 if game.away_goals > game.home_goals
 
       elsif game.home_team_id ==team_id
-        opponent_records[team_away] ||= {wins_against: 0, loss_against: 0, total_games:0}
+        opponent_records[team_away] ||= {wins_against: 0, total_games:0}
         opponent_records[team_away][:total_games] +=1
-        opponent_records[team_away][:wins_against] += 1 if game.away_goals > game.home_goals
+        opponent_records[team_away][:wins_against] += 1 if game.away_goals < game.home_goals
       end
     end
     win_percentages = {}
@@ -407,7 +407,7 @@ def opponent_record(team_id)
 
   def favorite_opponent(team_id)
     records = opponent_record(team_id)
-    favorite_opponent = records.min_by do |team, percentage|
+    favorite_opponent = records.max_by do |team, percentage|
       percentage
     end
     find_team_name(favorite_opponent[0])
@@ -415,7 +415,7 @@ def opponent_record(team_id)
 
   def rival(team_id)
     records=opponent_record(team_id)
-    rival = records.max_by do |team, percentage|
+    rival = records.min_by do |team, percentage|
       percentage
     end
     find_team_name(rival[0])
@@ -529,5 +529,14 @@ def opponent_record(team_id)
       lowest_scoring=away_calculate_average_goals_per_team
       lowest=lowest_scoring.min_by {|team,scoring_percentage| scoring_percentage }
       find_team_name(lowest[0])
+  end
+
+  def head_to_head(team_id)
+    record = opponent_record(team_id)
+    head_to_head_hash ={}
+    record.each do |team_id,win_percentage|
+      head_to_head_hash[find_team_name(team_id)] = win_percentage
+    end
+    head_to_head_hash
   end
 end
