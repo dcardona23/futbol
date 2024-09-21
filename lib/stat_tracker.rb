@@ -539,4 +539,77 @@ def opponent_record(team_id)
     end
     head_to_head_hash
   end
+
+  def calculate_season_stats
+    season_stats = {}
+
+    @game_teams.each do |game_team|
+      game_id = game_team.game_id
+      team_id = game_team.team_id
+      result = game_team.result
+
+      game_record = find_game_record(game_id)
+      next unless game_record
+
+      season_year = game_record.season
+
+      season_stats[team_id] ||= {}
+      season_stats[team_id][season_year] ||= { games: 0, wins: 0 }
+
+      season_stats[team_id][season_year][:games] += 1 
+      season_stats[team_id][season_year][:wins] += 1 if result == 'WIN'
+
+    end
+    season_stats
+  end
+
+  def calculate_season_win_percentages
+    season_stats = calculate_season_stats
+    season_win_percentages = {} 
+
+    season_stats.each do |team_id, seasons|
+      season_win_percentages[team_id] ||= {}
+      seasons.each do |season_year, stats|
+        total_games = stats[:games]
+        total_wins = stats[:wins]
+        win_percentage = total_games > 0? (total_wins.to_f / total_games * 100) : 0
+        season_win_percentages[team_id][season_year] = win_percentage 
+      end
+    end
+    season_win_percentages
+  end
+
+  def best_season(team_id)
+    season_win_percentages = calculate_season_win_percentages
+    best_season = nil
+    best_win_percentage = 0.0
+    team_id = team_id.to_s
+
+    if season_win_percentages.key?(team_id)
+      season_win_percentages[team_id].each do |season_year, win_percentage|
+        if win_percentage > best_win_percentage
+        best_win_percentage = win_percentage
+        best_season = season_year
+        end
+      end
+    end
+  best_season
+  end
+
+  def worst_season(team_id)
+    season_win_percentages = calculate_season_win_percentages
+    worst_season = nil
+    worst_win_percentage = Float::INFINITY
+    team_id = team_id.to_s
+
+    if season_win_percentages.key?(team_id)
+      season_win_percentages[team_id].each do |season_year, win_percentage|
+        if win_percentage < worst_win_percentage
+        worst_win_percentage = win_percentage
+        worst_season = season_year
+        end
+      end
+    end
+    worst_season
+  end
 end
