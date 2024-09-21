@@ -337,7 +337,7 @@ class StatTracker
 
       coach_records[coach] ||= { wins: 0, total_games: 0 }
       coach_records[coach][:total_games] += 1
-      coach_records[coach][:wins] += 1 if result == "LOSS"
+      coach_records[coach][:wins] += 1 if result == "WIN"
 
       end
       return nil if coach_records.empty?
@@ -348,7 +348,7 @@ class StatTracker
       win_percentages[coach] = record[:wins].to_f / record[:total_games]
     end
 
-    win_percentages.max_by { |coach, percentage|
+    win_percentages.min_by { |coach, percentage|
       percentage }.first
   end
 
