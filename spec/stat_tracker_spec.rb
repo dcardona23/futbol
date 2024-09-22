@@ -238,4 +238,10 @@ RSpec.describe StatTracker do
     :average_goals_against=>3.0}}}
     expect(@stat_tracker.seasonal_summary("6")).to eq(hash_team_6)
   end
+
+  describe "#average_win_percentage" do
+    it 'can return the average win percentage of all games for a team' do
+      expect(@stat_tracker.average_win_percentage(3)).to eq(0.25)
+    end
+  end
 end
