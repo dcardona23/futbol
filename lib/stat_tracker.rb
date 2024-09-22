@@ -760,4 +760,30 @@ def opponent_record(team_id)
     end
     summary
   end
+
+  def most_goals_scored(team_id)
+    team_games = @games.select { |game| game.home_team_id == team_id || game.away_team_id == team_id }
+
+      max_goals = team_games.map do |game|
+    if game.home_team_id == team_id
+      game.home_goals
+    else
+      game.away_goals
+    end
+  end.max
+    max_goals
+  end
+
+  def fewest_goals_scored(team_id)
+    team_games = @games.select { |game| game.home_team_id == team_id || game.away_team_id == team_id }
+
+      min_goals = team_games.map do |game|
+    if game.home_team_id == team_id
+      game.home_goals
+    else
+      game.away_goals
+    end
+  end.min
+    min_goals
+  end
 end
