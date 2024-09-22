@@ -277,3 +277,4 @@ end
       expect(@stat_tracker.seasonal_summary("6")).to eq(hash_team_6)
     end
   end
+end

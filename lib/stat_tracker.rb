@@ -760,3 +760,4 @@ def opponent_record(team_id)
     end
     summary
   end
+end
