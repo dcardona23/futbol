@@ -24,8 +24,8 @@ module GameStat
         end
     end
 
-    total_games = games.size
-    percentage = (home_wins.to_f / total_games * 100).round(2)
+    total_games = games.count
+    percentage = (home_wins.to_f / total_games).round(2)
     end
 
     def percentage_visitor_wins
@@ -36,8 +36,8 @@ module GameStat
         end
     end
 
-    total_games = games.size
-    percentage = (visitor_wins.to_f / total_games * 100).round(2)
+    total_games = games.count
+    percentage = (visitor_wins.to_f / total_games).round(2)
     end
 
     def percentage_ties
@@ -48,8 +48,8 @@ module GameStat
         end
     end
 
-    total_games = games.size
-    percentage = (ties.to_f / total_games * 100).round(2)
+    total_games = games.count
+    percentage = (ties.to_f / total_games).round(2)
     end
 
     def home_games_only #for highest/lowest scoring at home
