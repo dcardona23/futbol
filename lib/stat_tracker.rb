@@ -572,6 +572,17 @@ class StatTracker
         team_wins
     end
     
+    def calculate_team_ties(team_id)
+        team_ties = []
+    
+        @game_teams.each do |game_team|
+            if game_team.team_id.to_s == team_id.to_s && game_team.result == 'TIE'
+                team_ties << game_team.game_id
+            end
+        end
+        team_ties
+    end
+
     def calculate_team_losses(team_id)
         team_losses = []
     
@@ -746,7 +757,8 @@ class StatTracker
 
     def average_win_percentage(team_id)
         wins = calculate_team_wins(team_id).size
-        total_games = wins + calculate_team_losses(team_id).size
+        ties = calculate_team_ties(team_id).size
+        total_games = wins + ties + calculate_team_losses(team_id).size
        
         returm 0.0 if total_games == 0
  
