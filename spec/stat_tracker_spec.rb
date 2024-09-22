@@ -108,24 +108,45 @@ RSpec.describe StatTracker do
   end
 
   describe '#team accuracy' do
+    it 'can calculate game stats' do
+      @stat_tracker.calculate_game_stats
+      expected = {
+        season_year: "20122013",
+        teams: {
+          "3" => { goals: 2, games: 1, shots: 8 }, 
+          "6" => { goals: 3, games: 1, shots: 12 } 
+      }
+    }
+      expect(@stat_tracker.calculate_game_stats["2012030221"]).to eq(expected)
+    end
+    
     it 'can calculate season accuracy ratios' do
-      expect(@stat_tracker.calculate_season_accuracy_ratios).to be_a(Hash)
+      @stat_tracker.calculate_season_accuracy_ratios
+      expected = { 
+        "20122013" => { "3" => { total_goals: 5, total_shots: 23, accuracy_ratio: 0.21739130434782608 }, 
+        "6" => { total_goals: 8, total_shots: 28, accuracy_ratio: 0.2857142857142857 }
+        }
+      }
+
+      expect(@stat_tracker.calculate_season_accuracy_ratios).to eq(expected) 
     end
 
     it 'can identify the most accurate team in a season' do
-      allow(stat_tracker).to receive(:most_accurate_team).with("20132014").and_return("Real Salt Lake")
-      allow(stat_tracker).to receive(:most_accurate_team).with("20142015").and_return("Toronto FC")
-
-      expect(stat_tracker.most_accurate_team("20132014")).to eq("Real Salt Lake")
-      expect(stat_tracker.most_accurate_team("20142015")).to eq("Toronto FC")
+        allow(@stat_tracker).to receive(:calculate_season_accuracy_ratios).and_return({
+            "20122013" => {
+              "1" => { accuracy_ratio: 0.75 },
+              "2" => { accuracy_ratio: 0.85 },
+              "3" => {accuracy_ratio: 0.65 }
+      }
+      })
+        allow(@stat_tracker).to receive(:find_team_name).with("2").and_return("FC Dallas")
+        allow(@stat_tracker).to receive(:find_team_name).with("3").and_return("Houston Dynamo")
+  
+      expect(@stat_tracker.most_accurate_team("20122013")).to eq("FC Dallas")
     end
 
     it 'can identify the least accurate team in a season' do
-      allow(stat_tracker).to receive(:least_accurate_team).with("20122013").and_return("Houston Dynamo")
-      allow(stat_tracker).to receive(:least_accurate_team).with("20162017").and_return("FC Cincinnati")
-
-      expect(stat_tracker.least_accurate_team("20122013")).to eq("Houston Dynamo")
-      expect(stat_tracker.least_accurate_team("20162017")).to eq("FC Cincinnati")
+      expect(@stat_tracker.least_accurate_team("20122013")).to eq("Houston Dynamo")
     end
   end
 
