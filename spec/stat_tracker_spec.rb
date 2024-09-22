@@ -78,19 +78,19 @@ RSpec.describe StatTracker do
     end
     describe "percentage_home_wins" do
     it 'can return the percentage of home wins' do
-      expect(@stat_tracker.percentage_home_wins).to eq(40.0)
+      expect(@stat_tracker.percentage_home_wins).to eq(0.44)
     end
   end
 
     describe "percentage_visitor_wins" do
     it 'can return the percentage of away wins' do
-      expect(@stat_tracker.percentage_visitor_wins).to eq(36.0)
+      expect(@stat_tracker.percentage_visitor_wins).to eq(0.36)
     end
   end
 
     describe "percentage_ties" do
     it 'can return the percentage of ties' do
-      expect(@stat_tracker.percentage_ties).to eq(24.0)
+      expect(@stat_tracker.percentage_ties).to eq(0.24)
     end
   end
 
