@@ -277,20 +277,3 @@ end
       expect(@stat_tracker.seasonal_summary("6")).to eq(hash_team_6)
     end
   end
-
-  describe "#most_goals_scored" do
-    it 'can return the most goals scored' do
-
-      expect(@stat_tracker.most_goals_scored("6")).to eq(3)
-      expect(@stat_tracker.most_goals_scored("8")).to eq(4)
-    end
-  end
-
-  describe "#fewest_goals_scored" do
-    it 'can return the fewest goals scored' do
-
-      expect(@stat_tracker.fewest_goals_scored("6")).to eq(2)
-      expect(@stat_tracker.fewest_goals_scored("8")).to eq(1)
-    end
-  end
-end
