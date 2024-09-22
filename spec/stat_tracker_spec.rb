@@ -291,4 +291,10 @@ end
         expect(@stat_tracker.fewest_goals_scored("8")).to eq(1)
     end
   end
+
+  describe "#average_win_percentage" do
+    it 'can return the average win percentage of all games for a team' do
+      expect(@stat_tracker.average_win_percentage(3)).to eq(25.00)
+    end
+  end
 end

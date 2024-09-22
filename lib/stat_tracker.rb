@@ -292,6 +292,10 @@ class StatTracker
         games_by_season
     end
 
+    def coach_records
+
+    end
+
     def winningest_coach(season)
         # Returns a nested hash of information with the coach's name as the outer hash 
         # The inner has has total games => qty and wins => qty
@@ -742,5 +746,14 @@ class StatTracker
             end
         end
         summary
+    end
+
+    def average_win_percentage(team_id)
+        wins = calculate_team_wins(team_id).size
+        total_games = wins + calculate_team_losses(team_id).size
+        
+        returm 0.0 if total_games == 0
+
+        ((wins.to_f/ total_games) * 100).round(2)
     end
 end
