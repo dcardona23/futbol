@@ -762,7 +762,6 @@ class StatTracker
        
         returm 0.0 if total_games == 0
  
- 
         (wins.to_f/ total_games).round(2)
     end
 end
