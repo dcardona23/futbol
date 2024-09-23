@@ -578,6 +578,16 @@ class StatTracker
         end
         team_losses
     end
+
+    def average_win_percentage(team_id)
+        wins = calculate_team_wins(team_id).size
+        ties = calculate_team_ties(team_id).size
+        total_games = wins + ties + calculate_team_losses(team_id).size
+       
+        returm 0.0 if total_games == 0
+ 
+        (wins.to_f/ total_games).round(2)
+    end
     
     def calculate_winning_points_differences(team_id)
         team_wins = calculate_team_wins(team_id)
@@ -736,15 +746,5 @@ class StatTracker
             end
         end
         summary
-    end
-
-    def average_win_percentage(team_id)
-        wins = calculate_team_wins(team_id).size
-        ties = calculate_team_ties(team_id).size
-        total_games = wins + ties + calculate_team_losses(team_id).size
-       
-        returm 0.0 if total_games == 0
- 
-        (wins.to_f/ total_games).round(2)
     end
 end
