@@ -4,7 +4,6 @@ require './lib/stat_tracker'
 RSpec.describe GameTeam do
     before(:each) do
         @game_team = GameTeam.new(2012030221,3,"away","LOSS","OT","John Tortorella",2,8,44,8,3,0,44.8,17,7)
-        # require 'pry'; binding.pry
     end
 
     describe '#initialze' do
