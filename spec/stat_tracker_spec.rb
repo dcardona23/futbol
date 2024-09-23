@@ -8,21 +8,23 @@ require 'spec_helper'
 RSpec.describe StatTracker do
   let(:stat_tracker) {StatTracker.new}
 
-    before(:each) do
-      game_path = './data/games_dummy.csv'
-      team_path = './data/teams.csv'
-      game_teams_path = './data/game_teams_dummy.csv'
-      locations = {
-          games: game_path,
-          teams: team_path,
-          game_teams: game_teams_path
-          }
+  before(:each) do
+    game_path = './data/games_dummy.csv'
+    team_path = './data/teams.csv'
+    game_teams_path = './data/game_teams_dummy.csv'
+    locations = {
+        games: game_path,
+        teams: team_path,
+        game_teams: game_teams_path
+        }
         
-      @stat_tracker = StatTracker.from_csv(locations)
+    @stat_tracker = StatTracker.from_csv(locations)
+  end
+  
+  describe "#initialize" do
+    it 'exists' do
+      expect(@stat_tracker).to be_instance_of(StatTracker)
     end
-    
-  it 'exists' do
-    expect(@stat_tracker).to be_instance_of(StatTracker)
   end
   
   describe "#highest and #lowest total scores " do
@@ -47,10 +49,25 @@ RSpec.describe StatTracker do
     it 'can return the percentage of ties' do
       expect(@stat_tracker.percentage_ties).to eq(0.24)
     end
+
+    it 'can return the average win percentage of all games for a team' do
+      expect(@stat_tracker.average_win_percentage(3)).to eq(0.25)
+    end
+
+    it 'can give win percentages for a team against all other teams' do
+      hash={"Chicago Fire"=>0.0, "Orlando Pride"=>0.0, "Seattle Sounders FC"=>1.0}
+      expect(@stat_tracker.head_to_head("8")).to eq(hash)
+    end
   end
 
-  it 'can provide the number of games by season' do
-    expect(@stat_tracker.count_of_games_by_season).to eq({"20122013"=>9, "20132014"=>2, "20152016"=>5, "20162017"=>3, "20172018"=>6})
+  describe "#total games and #total teams" do
+    it 'can provide the number of games by season' do
+      expect(@stat_tracker.count_of_games_by_season).to eq({"20122013"=>9, "20132014"=>2, "20152016"=>5, "20162017"=>3, "20172018"=>6})
+    end
+
+    it 'can count the total number of teams' do
+      expect(@stat_tracker.count_of_teams).to eq(32)
+    end
   end
 
   describe "#average_goals" do
@@ -63,26 +80,22 @@ RSpec.describe StatTracker do
     end
   end
 
-  it 'can count the total number of teams' do
-    expect(@stat_tracker.count_of_teams).to eq(32)
-  end
+  describe "#scoring" do 
+    it 'can identify the best offense' do
+      expect(@stat_tracker.best_offense).to eq("Toronto FC")
+    end
 
-  describe '#scoring' do 
-      it 'can identify the best offense' do
-          expect(@stat_tracker.best_offense).to eq("Toronto FC")
-      end
-
-      it 'can identify the worst offense' do
-          expect(@stat_tracker.worst_offense).to eq("Atlanta United")
-      end
+    it 'can identify the worst offense' do
+      expect(@stat_tracker.worst_offense).to eq("Atlanta United")
+    end
   end
 
   describe "#highest and #lowest scoring by home or visitor" do
-    it "can return the team with the highest average goals at home" do
+    it 'can return the team with the highest average goals at home' do
       expect(@stat_tracker.highest_scoring_home_team).to eq("FC Dallas")
     end
 
-    it "can return the team with the lowest average goals at home" do
+    it 'can return the team with the lowest average goals at home' do
       expect(@stat_tracker.lowest_scoring_home_team).to eq("Houston Dynamo")
     end
 
@@ -160,24 +173,59 @@ RSpec.describe StatTracker do
     end
   end
 
-  it "can return team_info" do
-    info_hash1 = {
-      "team_id" => "53", 
+  describe "#team_info and #team_stats" do
+    it "can return team_info" do
+      info_hash1 = {
+        "team_id" => "53", 
       "franchise_id" => "28", 
-      "team_name" => "Columbus Crew SC",
-      "abbreviation" => "CCS",
-      "link" => "/api/v1/teams/53"
-      }
-    info_hash2= {
-      "team_id" => "1", 
-      "franchise_id" => "23", 
-      "team_name" => "Atlanta United",
-      "abbreviation" => "ATL",
-      "link" => "/api/v1/teams/1"
-      }
-    expect(@stat_tracker.team_info("53")).to eq(info_hash1)
+        "team_name" => "Columbus Crew SC",
+        "abbreviation" => "CCS",
+        "link" => "/api/v1/teams/53"
+        }
+      info_hash2= {
+        "team_id" => "1", 
+        "franchise_id" => "23", 
+        "team_name" => "Atlanta United",
+        "abbreviation" => "ATL",
+        "link" => "/api/v1/teams/1"
+        }
+      expect(@stat_tracker.team_info("53")).to eq(info_hash1)
 
-    expect(@stat_tracker.team_info("1")).to eq(info_hash2)
+      expect(@stat_tracker.team_info("1")).to eq(info_hash2)
+    end
+
+    it "calculates a team's stats by season" do
+      hash_team_6 =
+      {"20122013"=>
+    {:postseason=>
+    {:win_percentage=>1.0,
+      :total_goals_scored=>14,
+      :total_goals_against=>8,
+      :average_goals_scored=>2.8,
+      :average_goals_against=>1.6}},
+    "20162017"=>
+    {:regular_season=>
+    {:win_percentage=>0.0,
+      :total_goals_scored=>2,
+      :total_goals_against=>3,
+      :average_goals_scored=>2.0,
+      :average_goals_against=>3.0}},
+    "20132014"=>
+    {:regular_season=>
+    {:win_percentage=>1.0,
+      :total_goals_scored=>2,
+      :total_goals_against=>1,
+      :average_goals_scored=>2.0,
+      :average_goals_against=>1.0}},
+    "20172018"=>
+    {:regular_season=>
+    {:win_percentage=>0.0,
+      :total_goals_scored=>3,
+      :total_goals_against=>3,
+      :average_goals_scored=>3.0,
+      :average_goals_against=>3.0}}}
+      expect(@stat_tracker.seasonal_summary("6")).to eq(hash_team_6)
+    end
   end
 
   describe '#season stats' do
@@ -214,55 +262,13 @@ RSpec.describe StatTracker do
     end
   end
 
-  it 'identifies a teams biggest blowout' do
-    expect(@stat_tracker.biggest_team_blowout(6)).to eq(1)
-  end
+  describe "#team best and worst" do
+    it 'identifies a teams biggest blowout' do
+      expect(@stat_tracker.biggest_team_blowout(6)).to eq(1)
+    end
 
-  it 'identifies a teams worst loss' do
-    expect(@stat_tracker.worst_loss(3)).to eq(1)
-  end
-
-  it 'can give win percentages for a team against all other teams' do
-    hash={"Chicago Fire"=>0.0, "Orlando Pride"=>0.0, "Seattle Sounders FC"=>1.0}
-    expect(@stat_tracker.head_to_head("8")).to eq(hash)
-  end
-    
-  it "calculates a team's stats by season" do
-    hash_team_6 =
-    {"20122013"=>
-  {:postseason=>
-  {:win_percentage=>1.0,
-    :total_goals_scored=>14,
-    :total_goals_against=>8,
-    :average_goals_scored=>2.8,
-    :average_goals_against=>1.6}},
-  "20162017"=>
-  {:regular_season=>
-  {:win_percentage=>0.0,
-    :total_goals_scored=>2,
-    :total_goals_against=>3,
-    :average_goals_scored=>2.0,
-    :average_goals_against=>3.0}},
-  "20132014"=>
-  {:regular_season=>
-  {:win_percentage=>1.0,
-    :total_goals_scored=>2,
-    :total_goals_against=>1,
-    :average_goals_scored=>2.0,
-    :average_goals_against=>1.0}},
-  "20172018"=>
-  {:regular_season=>
-  {:win_percentage=>0.0,
-    :total_goals_scored=>3,
-    :total_goals_against=>3,
-    :average_goals_scored=>3.0,
-    :average_goals_against=>3.0}}}
-    expect(@stat_tracker.seasonal_summary("6")).to eq(hash_team_6)
-  end
-
-  describe "#average_win_percentage" do
-    it 'can return the average win percentage of all games for a team' do
-      expect(@stat_tracker.average_win_percentage(3)).to eq(0.25)
+    it 'identifies a teams worst loss' do
+      expect(@stat_tracker.worst_loss(3)).to eq(1)
     end
   end
 end

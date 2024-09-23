@@ -13,7 +13,7 @@
       <img src="./assets/0.13.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2024-09-23T10:33:43-06:00">2024-09-23T10:33:43-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2024-09-23T10:52:11-06:00">2024-09-23T10:52:11-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -22,14 +22,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="green">
-  99.35%
+  99.36%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         67.14
+         66.82
        </span>
     </span> hits/line
     )
@@ -42,11 +42,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>620</b> relevant lines,
-    <span class="green"><b>616</b> lines covered</span> and
+    <b>623</b> relevant lines,
+    <span class="green"><b>619</b> lines covered</span> and
     <span class="red"><b>4</b> lines missed. </span>
     (<span class="green">
-  99.35%
+  99.36%
 </span>
 )
   </div>
@@ -127,11 +127,11 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#f68e41f2db9ae31ada72dc8b2f2ccf7cdf0eb020" class="src_link" title="spec/stat_tracker_spec.rb">spec/stat_tracker_spec.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">268</td>
-            <td class="cell--number">116</td>
-            <td class="cell--number">116</td>
+            <td class="cell--number">274</td>
+            <td class="cell--number">119</td>
+            <td class="cell--number">119</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">2.51</td>
+            <td class="cell--number">2.47</td>
             
           </tr>
         
@@ -7313,7 +7313,7 @@
 
             
 
-            <code class="ruby">    </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -7325,7 +7325,7 @@
 
             
 
-            <code class="ruby">    def calculate_winning_points_differences(team_id)</code>
+            <code class="ruby">    def average_win_percentage(team_id)</code>
           </li>
         </div>
       
@@ -7337,7 +7337,7 @@
 
             
 
-            <code class="ruby">        team_wins = calculate_team_wins(team_id)</code>
+            <code class="ruby">        wins = calculate_team_wins(team_id).size</code>
           </li>
         </div>
       
@@ -7349,53 +7349,51 @@
 
             
 
-            <code class="ruby">        winning_points_differences = {}</code>
+            <code class="ruby">        ties = calculate_team_ties(team_id).size</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="585">
-            
-
-            
-
-            <code class="ruby">    </code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="586">
+          <li class="covered" data-hits="1" data-linenumber="585">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">        @games.each do |game|</code>
+            <code class="ruby">        total_games = wins + ties + calculate_team_losses(team_id).size</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="25" data-linenumber="587">
-            
-              <span class="hits">25</span>
+          <li class="never" data-hits="" data-linenumber="586">
             
 
             
 
-            <code class="ruby">            next unless team_wins.include?(game.game_id.to_s)</code>
+            <code class="ruby">       </code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="588">
+          <li class="covered" data-hits="1" data-linenumber="587">
             
-              <span class="hits">3</span>
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        returm 0.0 if total_games == 0</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="588">
             
 
             
 
-            <code class="ruby">                points_difference = if game.away_team_id.to_s == team_id.to_s</code>
+            <code class="ruby"> </code>
           </li>
         </div>
       
@@ -7407,7 +7405,7 @@
 
             
 
-            <code class="ruby">                    game.away_goals - game.home_goals</code>
+            <code class="ruby">        (wins.to_f/ total_games).round(2)</code>
           </li>
         </div>
       
@@ -7417,78 +7415,12 @@
 
             
 
-            <code class="ruby">                else</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="591">
-            
-              <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">                    game.home_goals - game.away_goals</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="592">
-            
-
-            
-
-            <code class="ruby">                end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="3" data-linenumber="593">
-            
-              <span class="hits">3</span>
-            
-
-            
-
-            <code class="ruby">            winning_points_differences[game.game_id] = points_difference</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="594">
-            
-
-            
-
-            <code class="ruby">        end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="595">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        winning_points_differences</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="596">
-            
-
-            
-
             <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="597">
+          <li class="never" data-hits="" data-linenumber="591">
             
 
             
@@ -7498,14 +7430,84 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="598">
+          <li class="covered" data-hits="1" data-linenumber="592">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    def biggest_team_blowout(team_id)</code>
+            <code class="ruby">    def calculate_winning_points_differences(team_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="593">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        team_wins = calculate_team_wins(team_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="594">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        winning_points_differences = {}</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="595">
+            
+
+            
+
+            <code class="ruby">    </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="596">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        @games.each do |game|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="25" data-linenumber="597">
+            
+              <span class="hits">25</span>
+            
+
+            
+
+            <code class="ruby">            next unless team_wins.include?(game.game_id.to_s)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="3" data-linenumber="598">
+            
+              <span class="hits">3</span>
+            
+
+            
+
+            <code class="ruby">                points_difference = if game.away_team_id.to_s == team_id.to_s</code>
           </li>
         </div>
       
@@ -7517,31 +7519,29 @@
 
             
 
-            <code class="ruby">        winning_points_differences = calculate_winning_points_differences(team_id)</code>
+            <code class="ruby">                    game.away_goals - game.home_goals</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="600">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="600">
             
 
             
 
-            <code class="ruby">        biggest_team_blowout = winning_points_differences.values.max</code>
+            <code class="ruby">                else</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="601">
+          <li class="covered" data-hits="2" data-linenumber="601">
             
-              <span class="hits">1</span>
-            
-
+              <span class="hits">2</span>
             
 
-            <code class="ruby">        biggest_team_blowout</code>
+            
+
+            <code class="ruby">                    game.home_goals - game.away_goals</code>
           </li>
         </div>
       
@@ -7551,29 +7551,29 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">                end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="603">
+          <li class="covered" data-hits="3" data-linenumber="603">
+            
+              <span class="hits">3</span>
             
 
             
 
-            <code class="ruby">    </code>
+            <code class="ruby">            winning_points_differences[game.game_id] = points_difference</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="604">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="604">
             
 
             
 
-            <code class="ruby">    def calculate_losing_points_differences(team_id)</code>
+            <code class="ruby">        end</code>
           </li>
         </div>
       
@@ -7585,19 +7585,17 @@
 
             
 
-            <code class="ruby">        team_losses = calculate_team_losses(team_id)</code>
+            <code class="ruby">        winning_points_differences</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="606">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="606">
             
 
             
 
-            <code class="ruby">        losing_points_differences = {}</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -7619,12 +7617,126 @@
 
             
 
+            <code class="ruby">    def biggest_team_blowout(team_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="609">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        winning_points_differences = calculate_winning_points_differences(team_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="610">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        biggest_team_blowout = winning_points_differences.values.max</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="611">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        biggest_team_blowout</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="612">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="613">
+            
+
+            
+
+            <code class="ruby">    </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="614">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    def calculate_losing_points_differences(team_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="615">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        team_losses = calculate_team_losses(team_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="616">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        losing_points_differences = {}</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="617">
+            
+
+            
+
+            <code class="ruby">    </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="618">
+            
+              <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">        @games.each do |game|</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="25" data-linenumber="609">
+          <li class="covered" data-hits="25" data-linenumber="619">
             
               <span class="hits">25</span>
             
@@ -7636,7 +7748,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="610">
+          <li class="covered" data-hits="3" data-linenumber="620">
             
               <span class="hits">3</span>
             
@@ -7648,7 +7760,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="611">
+          <li class="covered" data-hits="2" data-linenumber="621">
             
               <span class="hits">2</span>
             
@@ -7660,124 +7772,12 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="612">
+          <li class="never" data-hits="" data-linenumber="622">
             
 
             
 
             <code class="ruby">                else</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="613">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">                    game.away_goals - game.home_goals</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="614">
-            
-
-            
-
-            <code class="ruby">                end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="3" data-linenumber="615">
-            
-              <span class="hits">3</span>
-            
-
-            
-
-            <code class="ruby">            losing_points_differences[game.game_id] = points_difference</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="616">
-            
-
-            
-
-            <code class="ruby">        end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="617">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        losing_points_differences</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="618">
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="619">
-            
-
-            
-
-            <code class="ruby">    </code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="620">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    def worst_loss(team_id)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="621">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        losing_points_differences = calculate_losing_points_differences(team_id)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="622">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        worst_loss = losing_points_differences.values.max</code>
           </li>
         </div>
       
@@ -7789,7 +7789,7 @@
 
             
 
-            <code class="ruby">        worst_loss</code>
+            <code class="ruby">                    game.away_goals - game.home_goals</code>
           </li>
         </div>
       
@@ -7799,29 +7799,29 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">                end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="625">
+          <li class="covered" data-hits="3" data-linenumber="625">
+            
+              <span class="hits">3</span>
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">            losing_points_differences[game.game_id] = points_difference</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="626">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="626">
             
 
             
 
-            <code class="ruby">    def head_to_head(team_id)</code>
+            <code class="ruby">        end</code>
           </li>
         </div>
       
@@ -7833,19 +7833,17 @@
 
             
 
-            <code class="ruby">        record = opponent_record(team_id)</code>
+            <code class="ruby">        losing_points_differences</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="628">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="628">
             
 
             
 
-            <code class="ruby">        head_to_head_hash ={}</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -7855,7 +7853,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">    </code>
           </li>
         </div>
       
@@ -7867,29 +7865,31 @@
 
             
 
-            <code class="ruby">        record.each do |team_id,win_percentage|</code>
+            <code class="ruby">    def worst_loss(team_id)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="631">
+          <li class="covered" data-hits="1" data-linenumber="631">
             
-              <span class="hits">3</span>
-            
-
+              <span class="hits">1</span>
             
 
-            <code class="ruby">            head_to_head_hash[find_team_name(team_id)] = win_percentage</code>
+            
+
+            <code class="ruby">        losing_points_differences = calculate_losing_points_differences(team_id)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="632">
+          <li class="covered" data-hits="1" data-linenumber="632">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">        end</code>
+            <code class="ruby">        worst_loss = losing_points_differences.values.max</code>
           </li>
         </div>
       
@@ -7901,7 +7901,7 @@
 
             
 
-            <code class="ruby">        head_to_head_hash</code>
+            <code class="ruby">        worst_loss</code>
           </li>
         </div>
       
@@ -7933,12 +7933,124 @@
 
             
 
+            <code class="ruby">    def head_to_head(team_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="637">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        record = opponent_record(team_id)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="638">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        head_to_head_hash ={}</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="639">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="640">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        record.each do |team_id,win_percentage|</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="3" data-linenumber="641">
+            
+              <span class="hits">3</span>
+            
+
+            
+
+            <code class="ruby">            head_to_head_hash[find_team_name(team_id)] = win_percentage</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="642">
+            
+
+            
+
+            <code class="ruby">        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="643">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        head_to_head_hash</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="644">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="645">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="646">
+            
+              <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">    def most_goals_scored(team_id)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="52" data-linenumber="637">
+          <li class="covered" data-hits="52" data-linenumber="647">
             
               <span class="hits">52</span>
             
@@ -7950,7 +8062,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="638">
+          <li class="never" data-hits="" data-linenumber="648">
             
 
             
@@ -7960,7 +8072,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="639">
+          <li class="covered" data-hits="2" data-linenumber="649">
             
               <span class="hits">2</span>
             
@@ -7972,7 +8084,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="11" data-linenumber="640">
+          <li class="covered" data-hits="11" data-linenumber="650">
             
               <span class="hits">11</span>
             
@@ -7984,7 +8096,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="5" data-linenumber="641">
+          <li class="covered" data-hits="5" data-linenumber="651">
             
               <span class="hits">5</span>
             
@@ -7996,7 +8108,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="642">
+          <li class="never" data-hits="" data-linenumber="652">
             
 
             
@@ -8006,7 +8118,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="6" data-linenumber="643">
+          <li class="covered" data-hits="6" data-linenumber="653">
             
               <span class="hits">6</span>
             
@@ -8018,7 +8130,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="644">
+          <li class="never" data-hits="" data-linenumber="654">
             
 
             
@@ -8028,7 +8140,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="645">
+          <li class="never" data-hits="" data-linenumber="655">
             
 
             
@@ -8038,7 +8150,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="646">
+          <li class="covered" data-hits="2" data-linenumber="656">
             
               <span class="hits">2</span>
             
@@ -8050,7 +8162,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="647">
+          <li class="never" data-hits="" data-linenumber="657">
             
 
             
@@ -8060,7 +8172,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="648">
+          <li class="never" data-hits="" data-linenumber="658">
             
 
             
@@ -8070,7 +8182,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="649">
+          <li class="covered" data-hits="1" data-linenumber="659">
             
               <span class="hits">1</span>
             
@@ -8082,7 +8194,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="52" data-linenumber="650">
+          <li class="covered" data-hits="52" data-linenumber="660">
             
               <span class="hits">52</span>
             
@@ -8094,7 +8206,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="651">
+          <li class="never" data-hits="" data-linenumber="661">
             
 
             
@@ -8104,7 +8216,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="652">
+          <li class="covered" data-hits="2" data-linenumber="662">
             
               <span class="hits">2</span>
             
@@ -8116,7 +8228,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="11" data-linenumber="653">
+          <li class="covered" data-hits="11" data-linenumber="663">
             
               <span class="hits">11</span>
             
@@ -8128,7 +8240,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="5" data-linenumber="654">
+          <li class="covered" data-hits="5" data-linenumber="664">
             
               <span class="hits">5</span>
             
@@ -8140,7 +8252,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="655">
+          <li class="never" data-hits="" data-linenumber="665">
             
 
             
@@ -8150,7 +8262,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="6" data-linenumber="656">
+          <li class="covered" data-hits="6" data-linenumber="666">
             
               <span class="hits">6</span>
             
@@ -8162,7 +8274,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="657">
+          <li class="never" data-hits="" data-linenumber="667">
             
 
             
@@ -8172,7 +8284,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="658">
+          <li class="never" data-hits="" data-linenumber="668">
             
 
             
@@ -8182,7 +8294,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="659">
+          <li class="covered" data-hits="2" data-linenumber="669">
             
               <span class="hits">2</span>
             
@@ -8194,7 +8306,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="660">
+          <li class="never" data-hits="" data-linenumber="670">
             
 
             
@@ -8204,7 +8316,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="661">
+          <li class="never" data-hits="" data-linenumber="671">
             
 
             
@@ -8214,7 +8326,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="662">
+          <li class="covered" data-hits="1" data-linenumber="672">
             
               <span class="hits">1</span>
             
@@ -8226,7 +8338,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="663">
+          <li class="covered" data-hits="1" data-linenumber="673">
             
               <span class="hits">1</span>
             
@@ -8238,7 +8350,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="664">
+          <li class="never" data-hits="" data-linenumber="674">
             
 
             
@@ -8248,7 +8360,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="665">
+          <li class="covered" data-hits="1" data-linenumber="675">
             
               <span class="hits">1</span>
             
@@ -8260,7 +8372,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="25" data-linenumber="666">
+          <li class="covered" data-hits="25" data-linenumber="676">
             
               <span class="hits">25</span>
             
@@ -8272,7 +8384,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="8" data-linenumber="667">
+          <li class="covered" data-hits="8" data-linenumber="677">
             
               <span class="hits">8</span>
             
@@ -8284,7 +8396,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="8" data-linenumber="668">
+          <li class="covered" data-hits="8" data-linenumber="678">
             
               <span class="hits">8</span>
             
@@ -8296,7 +8408,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="8" data-linenumber="669">
+          <li class="covered" data-hits="8" data-linenumber="679">
             
               <span class="hits">8</span>
             
@@ -8308,7 +8420,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="8" data-linenumber="670">
+          <li class="covered" data-hits="8" data-linenumber="680">
             
               <span class="hits">8</span>
             
@@ -8320,7 +8432,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="8" data-linenumber="671">
+          <li class="covered" data-hits="8" data-linenumber="681">
             
               <span class="hits">8</span>
             
@@ -8332,7 +8444,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="8" data-linenumber="672">
+          <li class="covered" data-hits="8" data-linenumber="682">
             
               <span class="hits">8</span>
             
@@ -8344,7 +8456,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="8" data-linenumber="673">
+          <li class="covered" data-hits="8" data-linenumber="683">
             
               <span class="hits">8</span>
             
@@ -8356,7 +8468,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="674">
+          <li class="covered" data-hits="3" data-linenumber="684">
             
               <span class="hits">3</span>
             
@@ -8368,7 +8480,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="675">
+          <li class="covered" data-hits="2" data-linenumber="685">
             
               <span class="hits">2</span>
             
@@ -8380,7 +8492,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="676">
+          <li class="covered" data-hits="2" data-linenumber="686">
             
               <span class="hits">2</span>
             
@@ -8392,7 +8504,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="677">
+          <li class="covered" data-hits="2" data-linenumber="687">
             
               <span class="hits">2</span>
             
@@ -8404,7 +8516,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="678">
+          <li class="covered" data-hits="2" data-linenumber="688">
             
               <span class="hits">2</span>
             
@@ -8416,7 +8528,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="679">
+          <li class="covered" data-hits="2" data-linenumber="689">
             
               <span class="hits">2</span>
             
@@ -8428,7 +8540,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="680">
+          <li class="covered" data-hits="2" data-linenumber="690">
             
               <span class="hits">2</span>
             
@@ -8440,7 +8552,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="681">
+          <li class="never" data-hits="" data-linenumber="691">
             
 
             
@@ -8450,7 +8562,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="682">
+          <li class="never" data-hits="" data-linenumber="692">
             
 
             
@@ -8460,7 +8572,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="683">
+          <li class="covered" data-hits="3" data-linenumber="693">
             
               <span class="hits">3</span>
             
@@ -8472,7 +8584,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="684">
+          <li class="covered" data-hits="1" data-linenumber="694">
             
               <span class="hits">1</span>
             
@@ -8484,7 +8596,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="685">
+          <li class="covered" data-hits="1" data-linenumber="695">
             
               <span class="hits">1</span>
             
@@ -8496,7 +8608,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="686">
+          <li class="covered" data-hits="1" data-linenumber="696">
             
               <span class="hits">1</span>
             
@@ -8508,7 +8620,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="687">
+          <li class="covered" data-hits="1" data-linenumber="697">
             
               <span class="hits">1</span>
             
@@ -8520,7 +8632,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="688">
+          <li class="covered" data-hits="1" data-linenumber="698">
             
               <span class="hits">1</span>
             
@@ -8532,128 +8644,12 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="689">
+          <li class="missed" data-hits="0" data-linenumber="699">
             
 
             
 
             <code class="ruby">                            season_stats[season][:regular_season][:wins] += 1</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="690">
-            
-
-            
-
-            <code class="ruby">                        end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="691">
-            
-
-            
-
-            <code class="ruby">                end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="692">
-            
-              <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">            else team_home == team_id</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="5" data-linenumber="693">
-            
-              <span class="hits">5</span>
-            
-
-            
-
-            <code class="ruby">                if game.type == &quot;Postseason&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="3" data-linenumber="694">
-            
-              <span class="hits">3</span>
-            
-
-            
-
-            <code class="ruby">                    season_stats[season] ||={postseason:{wins:0, goals_for: 0, goals_against: 0,games: 0} }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="3" data-linenumber="695">
-            
-              <span class="hits">3</span>
-            
-
-            
-
-            <code class="ruby">                    season_stats[season][:postseason][:goals_for] += home_goals</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="3" data-linenumber="696">
-            
-              <span class="hits">3</span>
-            
-
-            
-
-            <code class="ruby">                    season_stats[season][:postseason][:goals_against] += away_goals</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="3" data-linenumber="697">
-            
-              <span class="hits">3</span>
-            
-
-            
-
-            <code class="ruby">                    season_stats[season][:postseason][:games] += 1</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="3" data-linenumber="698">
-            
-              <span class="hits">3</span>
-            
-
-            
-
-            <code class="ruby">                        if away_goals &lt; home_goals</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="3" data-linenumber="699">
-            
-              <span class="hits">3</span>
-            
-
-            
-
-            <code class="ruby">                            season_stats[season][:postseason][:wins] += 1</code>
           </li>
         </div>
       
@@ -8685,12 +8681,128 @@
 
             
 
+            <code class="ruby">            else team_home == team_id</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="5" data-linenumber="703">
+            
+              <span class="hits">5</span>
+            
+
+            
+
+            <code class="ruby">                if game.type == &quot;Postseason&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="3" data-linenumber="704">
+            
+              <span class="hits">3</span>
+            
+
+            
+
+            <code class="ruby">                    season_stats[season] ||={postseason:{wins:0, goals_for: 0, goals_against: 0,games: 0} }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="3" data-linenumber="705">
+            
+              <span class="hits">3</span>
+            
+
+            
+
+            <code class="ruby">                    season_stats[season][:postseason][:goals_for] += home_goals</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="3" data-linenumber="706">
+            
+              <span class="hits">3</span>
+            
+
+            
+
+            <code class="ruby">                    season_stats[season][:postseason][:goals_against] += away_goals</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="3" data-linenumber="707">
+            
+              <span class="hits">3</span>
+            
+
+            
+
+            <code class="ruby">                    season_stats[season][:postseason][:games] += 1</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="3" data-linenumber="708">
+            
+              <span class="hits">3</span>
+            
+
+            
+
+            <code class="ruby">                        if away_goals &lt; home_goals</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="3" data-linenumber="709">
+            
+              <span class="hits">3</span>
+            
+
+            
+
+            <code class="ruby">                            season_stats[season][:postseason][:wins] += 1</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="710">
+            
+
+            
+
+            <code class="ruby">                        end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="711">
+            
+
+            
+
+            <code class="ruby">                end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="5" data-linenumber="712">
+            
+              <span class="hits">5</span>
+            
+
+            
+
             <code class="ruby">                if game.type == &quot;Regular Season&quot;</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="703">
+          <li class="covered" data-hits="2" data-linenumber="713">
             
               <span class="hits">2</span>
             
@@ -8702,7 +8814,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="704">
+          <li class="covered" data-hits="2" data-linenumber="714">
             
               <span class="hits">2</span>
             
@@ -8714,7 +8826,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="705">
+          <li class="covered" data-hits="2" data-linenumber="715">
             
               <span class="hits">2</span>
             
@@ -8726,7 +8838,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="706">
+          <li class="covered" data-hits="2" data-linenumber="716">
             
               <span class="hits">2</span>
             
@@ -8738,7 +8850,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="707">
+          <li class="covered" data-hits="2" data-linenumber="717">
             
               <span class="hits">2</span>
             
@@ -8750,7 +8862,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="708">
+          <li class="covered" data-hits="1" data-linenumber="718">
             
               <span class="hits">1</span>
             
@@ -8762,7 +8874,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="709">
+          <li class="never" data-hits="" data-linenumber="719">
             
 
             
@@ -8772,7 +8884,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="710">
+          <li class="never" data-hits="" data-linenumber="720">
             
 
             
@@ -8782,7 +8894,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="711">
+          <li class="never" data-hits="" data-linenumber="721">
             
 
             
@@ -8792,7 +8904,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="712">
+          <li class="never" data-hits="" data-linenumber="722">
             
 
             
@@ -8802,7 +8914,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="713">
+          <li class="covered" data-hits="1" data-linenumber="723">
             
               <span class="hits">1</span>
             
@@ -8814,7 +8926,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="714">
+          <li class="never" data-hits="" data-linenumber="724">
             
 
             
@@ -8824,7 +8936,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="715">
+          <li class="never" data-hits="" data-linenumber="725">
             
 
             
@@ -8834,7 +8946,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="716">
+          <li class="covered" data-hits="1" data-linenumber="726">
             
               <span class="hits">1</span>
             
@@ -8846,7 +8958,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="717">
+          <li class="covered" data-hits="1" data-linenumber="727">
             
               <span class="hits">1</span>
             
@@ -8858,7 +8970,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="718">
+          <li class="never" data-hits="" data-linenumber="728">
             
 
             
@@ -8868,7 +8980,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="719">
+          <li class="covered" data-hits="1" data-linenumber="729">
             
               <span class="hits">1</span>
             
@@ -8880,7 +8992,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="720">
+          <li class="covered" data-hits="1" data-linenumber="730">
             
               <span class="hits">1</span>
             
@@ -8892,7 +9004,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="721">
+          <li class="covered" data-hits="4" data-linenumber="731">
             
               <span class="hits">4</span>
             
@@ -8904,7 +9016,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="722">
+          <li class="covered" data-hits="3" data-linenumber="732">
             
               <span class="hits">3</span>
             
@@ -8916,7 +9028,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="723">
+          <li class="covered" data-hits="3" data-linenumber="733">
             
               <span class="hits">3</span>
             
@@ -8928,7 +9040,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="724">
+          <li class="covered" data-hits="3" data-linenumber="734">
             
               <span class="hits">3</span>
             
@@ -8940,7 +9052,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="725">
+          <li class="covered" data-hits="3" data-linenumber="735">
             
               <span class="hits">3</span>
             
@@ -8952,7 +9064,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="726">
+          <li class="covered" data-hits="3" data-linenumber="736">
             
               <span class="hits">3</span>
             
@@ -8964,7 +9076,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="727">
+          <li class="covered" data-hits="3" data-linenumber="737">
             
               <span class="hits">3</span>
             
@@ -8976,7 +9088,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="728">
+          <li class="never" data-hits="" data-linenumber="738">
             
 
             
@@ -8986,7 +9098,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="4" data-linenumber="729">
+          <li class="covered" data-hits="4" data-linenumber="739">
             
               <span class="hits">4</span>
             
@@ -8998,7 +9110,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="730">
+          <li class="covered" data-hits="1" data-linenumber="740">
             
               <span class="hits">1</span>
             
@@ -9010,7 +9122,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="731">
+          <li class="covered" data-hits="1" data-linenumber="741">
             
               <span class="hits">1</span>
             
@@ -9022,7 +9134,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="732">
+          <li class="covered" data-hits="1" data-linenumber="742">
             
               <span class="hits">1</span>
             
@@ -9034,7 +9146,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="733">
+          <li class="covered" data-hits="1" data-linenumber="743">
             
               <span class="hits">1</span>
             
@@ -9046,7 +9158,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="734">
+          <li class="covered" data-hits="1" data-linenumber="744">
             
               <span class="hits">1</span>
             
@@ -9058,7 +9170,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="735">
+          <li class="covered" data-hits="1" data-linenumber="745">
             
               <span class="hits">1</span>
             
@@ -9070,7 +9182,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="736">
+          <li class="never" data-hits="" data-linenumber="746">
             
 
             
@@ -9080,124 +9192,12 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="737">
-            
-
-            
-
-            <code class="ruby">        end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="738">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        summary</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="739">
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="740">
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="741">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    def average_win_percentage(team_id)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="742">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        wins = calculate_team_wins(team_id).size</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="743">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        ties = calculate_team_ties(team_id).size</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="744">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        total_games = wins + ties + calculate_team_losses(team_id).size</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="745">
-            
-
-            
-
-            <code class="ruby">       </code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="746">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        returm 0.0 if total_games == 0</code>
-          </li>
-        </div>
-      
-        <div>
           <li class="never" data-hits="" data-linenumber="747">
             
 
             
 
-            <code class="ruby"> </code>
+            <code class="ruby">        end</code>
           </li>
         </div>
       
@@ -9209,7 +9209,7 @@
 
             
 
-            <code class="ruby">        (wins.to_f/ total_games).round(2)</code>
+            <code class="ruby">        summary</code>
           </li>
         </div>
       
@@ -9462,8 +9462,8 @@
     
 
     <div class="t-line-summary">
-      <b>116</b> relevant lines.
-      <span class="green"><b>116</b> lines covered</span> and
+      <b>119</b> relevant lines.
+      <span class="green"><b>119</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -9598,7 +9598,7 @@
 
             
 
-            <code class="ruby">    before(:each) do</code>
+            <code class="ruby">  before(:each) do</code>
           </li>
         </div>
       
@@ -9610,7 +9610,7 @@
 
             
 
-            <code class="ruby">      game_path = &#39;./data/games_dummy.csv&#39;</code>
+            <code class="ruby">    game_path = &#39;./data/games_dummy.csv&#39;</code>
           </li>
         </div>
       
@@ -9622,7 +9622,7 @@
 
             
 
-            <code class="ruby">      team_path = &#39;./data/teams.csv&#39;</code>
+            <code class="ruby">    team_path = &#39;./data/teams.csv&#39;</code>
           </li>
         </div>
       
@@ -9634,7 +9634,7 @@
 
             
 
-            <code class="ruby">      game_teams_path = &#39;./data/game_teams_dummy.csv&#39;</code>
+            <code class="ruby">    game_teams_path = &#39;./data/game_teams_dummy.csv&#39;</code>
           </li>
         </div>
       
@@ -9644,7 +9644,7 @@
 
             
 
-            <code class="ruby">      locations = {</code>
+            <code class="ruby">    locations = {</code>
           </li>
         </div>
       
@@ -9656,7 +9656,7 @@
 
             
 
-            <code class="ruby">          games: game_path,</code>
+            <code class="ruby">        games: game_path,</code>
           </li>
         </div>
       
@@ -9666,7 +9666,7 @@
 
             
 
-            <code class="ruby">          teams: team_path,</code>
+            <code class="ruby">        teams: team_path,</code>
           </li>
         </div>
       
@@ -9676,7 +9676,7 @@
 
             
 
-            <code class="ruby">          game_teams: game_teams_path</code>
+            <code class="ruby">        game_teams: game_teams_path</code>
           </li>
         </div>
       
@@ -9686,7 +9686,7 @@
 
             
 
-            <code class="ruby">          }</code>
+            <code class="ruby">        }</code>
           </li>
         </div>
       
@@ -9708,7 +9708,7 @@
 
             
 
-            <code class="ruby">      @stat_tracker = StatTracker.from_csv(locations)</code>
+            <code class="ruby">    @stat_tracker = StatTracker.from_csv(locations)</code>
           </li>
         </div>
       
@@ -9718,7 +9718,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -9728,7 +9728,7 @@
 
             
 
-            <code class="ruby">    </code>
+            <code class="ruby">  </code>
           </li>
         </div>
       
@@ -9740,7 +9740,7 @@
 
             
 
-            <code class="ruby">  it &#39;exists&#39; do</code>
+            <code class="ruby">  describe &quot;#initialize&quot; do</code>
           </li>
         </div>
       
@@ -9752,17 +9752,19 @@
 
             
 
-            <code class="ruby">    expect(@stat_tracker).to be_instance_of(StatTracker)</code>
+            <code class="ruby">    it &#39;exists&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="26">
+          <li class="covered" data-hits="1" data-linenumber="26">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">      expect(@stat_tracker).to be_instance_of(StatTracker)</code>
           </li>
         </div>
       
@@ -9772,31 +9774,27 @@
 
             
 
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="28">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="29">
+            
+
+            
+
             <code class="ruby">  </code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="28">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &quot;#highest and #lowest total scores &quot; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="29">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;can provide the highest combined score&#39; do</code>
           </li>
         </div>
       
@@ -9808,12 +9806,36 @@
 
             
 
+            <code class="ruby">  describe &quot;#highest and #lowest total scores &quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="31">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;can provide the highest combined score&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="32">
+            
+              <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">      expect(@stat_tracker.highest_total_score).to eq(7)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="31">
+          <li class="never" data-hits="" data-linenumber="33">
             
 
             
@@ -9823,7 +9845,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="32">
+          <li class="never" data-hits="" data-linenumber="34">
             
 
             
@@ -9833,7 +9855,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="33">
+          <li class="covered" data-hits="1" data-linenumber="35">
             
               <span class="hits">1</span>
             
@@ -9845,7 +9867,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="34">
+          <li class="covered" data-hits="1" data-linenumber="36">
             
               <span class="hits">1</span>
             
@@ -9857,7 +9879,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="35">
+          <li class="never" data-hits="" data-linenumber="37">
             
 
             
@@ -9867,7 +9889,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="36">
+          <li class="never" data-hits="" data-linenumber="38">
             
 
             
@@ -9877,36 +9899,12 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="37">
+          <li class="never" data-hits="" data-linenumber="39">
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="38">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &quot;#percentage_wins and ties&quot; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="39">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;can return the percentage of home wins&#39; do</code>
           </li>
         </div>
       
@@ -9918,12 +9916,36 @@
 
             
 
+            <code class="ruby">  describe &quot;#percentage_wins and ties&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="41">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;can return the percentage of home wins&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="42">
+            
+              <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">      expect(@stat_tracker.percentage_home_wins).to eq(0.40)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="41">
+          <li class="never" data-hits="" data-linenumber="43">
             
 
             
@@ -9933,7 +9955,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="42">
+          <li class="never" data-hits="" data-linenumber="44">
             
 
             
@@ -9943,7 +9965,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="43">
+          <li class="covered" data-hits="1" data-linenumber="45">
             
               <span class="hits">1</span>
             
@@ -9955,7 +9977,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="44">
+          <li class="covered" data-hits="1" data-linenumber="46">
             
               <span class="hits">1</span>
             
@@ -9967,7 +9989,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="45">
+          <li class="never" data-hits="" data-linenumber="47">
             
 
             
@@ -9977,7 +9999,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="46">
+          <li class="never" data-hits="" data-linenumber="48">
             
 
             
@@ -9987,7 +10009,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="47">
+          <li class="covered" data-hits="1" data-linenumber="49">
             
               <span class="hits">1</span>
             
@@ -9999,7 +10021,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="48">
+          <li class="covered" data-hits="1" data-linenumber="50">
             
               <span class="hits">1</span>
             
@@ -10011,7 +10033,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="49">
+          <li class="never" data-hits="" data-linenumber="51">
             
 
             
@@ -10021,34 +10043,12 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="50">
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="51">
+          <li class="never" data-hits="" data-linenumber="52">
             
 
             
 
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="52">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  it &#39;can provide the number of games by season&#39; do</code>
           </li>
         </div>
       
@@ -10060,17 +10060,19 @@
 
             
 
-            <code class="ruby">    expect(@stat_tracker.count_of_games_by_season).to eq({&quot;20122013&quot;=&gt;9, &quot;20132014&quot;=&gt;2, &quot;20152016&quot;=&gt;5, &quot;20162017&quot;=&gt;3, &quot;20172018&quot;=&gt;6})</code>
+            <code class="ruby">    it &#39;can return the average win percentage of all games for a team&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="54">
+          <li class="covered" data-hits="1" data-linenumber="54">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">      expect(@stat_tracker.average_win_percentage(3)).to eq(0.25)</code>
           </li>
         </div>
       
@@ -10080,19 +10082,17 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="56">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="56">
             
 
             
 
-            <code class="ruby">  describe &quot;#average_goals&quot; do</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -10104,7 +10104,7 @@
 
             
 
-            <code class="ruby">    it &#39;can provide provide the averge number of goals scored in a game across all seasons&#39; do</code>
+            <code class="ruby">    it &#39;can give win percentages for a team against all other teams&#39; do</code>
           </li>
         </div>
       
@@ -10116,17 +10116,19 @@
 
             
 
-            <code class="ruby">      expect(@stat_tracker.average_goals_per_game).to eq(4.48)</code>
+            <code class="ruby">      hash={&quot;Chicago Fire&quot;=&gt;0.0, &quot;Orlando Pride&quot;=&gt;0.0, &quot;Seattle Sounders FC&quot;=&gt;1.0}</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="59">
+          <li class="covered" data-hits="1" data-linenumber="59">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">      expect(@stat_tracker.head_to_head(&quot;8&quot;)).to eq(hash)</code>
           </li>
         </div>
       
@@ -10136,36 +10138,68 @@
 
             
 
-            <code class="ruby">  </code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="61">
+          <li class="never" data-hits="" data-linenumber="61">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="62">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="63">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    it &#39;can provide a hash with season names as keys, and average number of goals for that season as the value&#39; do</code>
+            <code class="ruby">  describe &quot;#total games and #total teams&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="62">
+          <li class="covered" data-hits="1" data-linenumber="64">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">      expect(@stat_tracker.average_goals_by_season).to eq({&quot;20122013&quot;=&gt;4.0, &quot;20132014&quot;=&gt;3.5, &quot;20152016&quot;=&gt;4.6, &quot;20162017&quot;=&gt;4.67, &quot;20172018&quot;=&gt;5.33})</code>
+            <code class="ruby">    it &#39;can provide the number of games by season&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="63">
+          <li class="covered" data-hits="1" data-linenumber="65">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(@stat_tracker.count_of_games_by_season).to eq({&quot;20122013&quot;=&gt;9, &quot;20132014&quot;=&gt;2, &quot;20152016&quot;=&gt;5, &quot;20162017&quot;=&gt;3, &quot;20172018&quot;=&gt;6})</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="66">
             
 
             
@@ -10175,7 +10209,51 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="64">
+          <li class="never" data-hits="" data-linenumber="67">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="68">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;can count the total number of teams&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="69">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(@stat_tracker.count_of_teams).to eq(32)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="70">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="71">
             
 
             
@@ -10185,7 +10263,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="65">
+          <li class="never" data-hits="" data-linenumber="72">
             
 
             
@@ -10195,102 +10273,26 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="66">
+          <li class="covered" data-hits="1" data-linenumber="73">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  it &#39;can count the total number of teams&#39; do</code>
+            <code class="ruby">  describe &quot;#average_goals&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="67">
+          <li class="covered" data-hits="1" data-linenumber="74">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    expect(@stat_tracker.count_of_teams).to eq(32)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="68">
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="69">
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="70">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &#39;#scoring&#39; do </code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="71">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      it &#39;can identify the best offense&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="72">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">          expect(@stat_tracker.best_offense).to eq(&quot;Toronto FC&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="73">
-            
-
-            
-
-            <code class="ruby">      end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="74">
-            
-
-            
-
-            <code class="ruby"></code>
+            <code class="ruby">    it &#39;can provide provide the averge number of goals scored in a game across all seasons&#39; do</code>
           </li>
         </div>
       
@@ -10302,90 +10304,12 @@
 
             
 
-            <code class="ruby">      it &#39;can identify the worst offense&#39; do</code>
+            <code class="ruby">      expect(@stat_tracker.average_goals_per_game).to eq(4.48)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="76">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">          expect(@stat_tracker.worst_offense).to eq(&quot;Atlanta United&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="77">
-            
-
-            
-
-            <code class="ruby">      end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="78">
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="79">
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="80">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &quot;#highest and #lowest scoring by home or visitor&quot; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="81">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &quot;can return the team with the highest average goals at home&quot; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="82">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(@stat_tracker.highest_scoring_home_team).to eq(&quot;FC Dallas&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="83">
+          <li class="never" data-hits="" data-linenumber="76">
             
 
             
@@ -10395,12 +10319,90 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="84">
+          <li class="never" data-hits="" data-linenumber="77">
+            
+
+            
+
+            <code class="ruby">  </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="78">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;can provide a hash with season names as keys, and average number of goals for that season as the value&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="79">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(@stat_tracker.average_goals_by_season).to eq({&quot;20122013&quot;=&gt;4.0, &quot;20132014&quot;=&gt;3.5, &quot;20152016&quot;=&gt;4.6, &quot;20162017&quot;=&gt;4.67, &quot;20172018&quot;=&gt;5.33})</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="80">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="81">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="82">
             
 
             
 
             <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="83">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  describe &#39;#scoring&#39; do </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="84">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;can identify the best offense&#39; do</code>
           </li>
         </div>
       
@@ -10412,24 +10414,12 @@
 
             
 
-            <code class="ruby">    it &quot;can return the team with the lowest average goals at home&quot; do</code>
+            <code class="ruby">      expect(@stat_tracker.best_offense).to eq(&quot;Toronto FC&quot;)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="86">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(@stat_tracker.lowest_scoring_home_team).to eq(&quot;Houston Dynamo&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="87">
+          <li class="never" data-hits="" data-linenumber="86">
             
 
             
@@ -10439,12 +10429,24 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="88">
+          <li class="never" data-hits="" data-linenumber="87">
             
 
             
 
             <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="88">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;can identify the worst offense&#39; do</code>
           </li>
         </div>
       
@@ -10456,19 +10458,17 @@
 
             
 
-            <code class="ruby">    it &#39;can return the team with the highest average goals when away&#39; do</code>
+            <code class="ruby">      expect(@stat_tracker.worst_offense).to eq(&quot;Atlanta United&quot;)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="90">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="90">
             
 
             
 
-            <code class="ruby">      expect(@stat_tracker.highest_scoring_visitor).to eq(&quot;Philadelphia Union&quot;)</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -10478,7 +10478,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -10500,7 +10500,7 @@
 
             
 
-            <code class="ruby">    it &#39;can return the team with the lowest average goals when away&#39; do</code>
+            <code class="ruby">  describe &quot;#highest and #lowest scoring by home or visitor&quot; do</code>
           </li>
         </div>
       
@@ -10512,17 +10512,19 @@
 
             
 
-            <code class="ruby">      expect(@stat_tracker.lowest_scoring_visitor).to eq(&quot;DC United&quot;)</code>
+            <code class="ruby">    it &quot;can return the team with the highest average goals at home&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="95">
+          <li class="covered" data-hits="1" data-linenumber="95">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">      expect(@stat_tracker.highest_scoring_home_team).to eq(&quot;FC Dallas&quot;)</code>
           </li>
         </div>
       
@@ -10532,7 +10534,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -10554,7 +10556,7 @@
 
             
 
-            <code class="ruby">  describe &quot;#coach performance&quot; do</code>
+            <code class="ruby">    it &quot;can return the team with the lowest average goals at home&quot; do</code>
           </li>
         </div>
       
@@ -10566,36 +10568,12 @@
 
             
 
-            <code class="ruby">    it &quot;can return a name of the Coach with the best win percentage for the season&quot; do</code>
+            <code class="ruby">      expect(@stat_tracker.lowest_scoring_home_team).to eq(&quot;Houston Dynamo&quot;)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="100">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(@stat_tracker.winningest_coach(&quot;20132014&quot;)).to eq(&quot;Barry Trotz&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="101">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(@stat_tracker.winningest_coach(&quot;20122013&quot;)).to eq(&quot;Claude Julien&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="102">
+          <li class="never" data-hits="" data-linenumber="100">
             
 
             
@@ -10605,7 +10583,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="103">
+          <li class="never" data-hits="" data-linenumber="101">
             
 
             
@@ -10615,26 +10593,46 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="104">
+          <li class="covered" data-hits="1" data-linenumber="102">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    it &quot;can return a name of the Coach with the worst win percentage for the season&quot; do</code>
+            <code class="ruby">    it &#39;can return the team with the highest average goals when away&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="105">
+          <li class="covered" data-hits="1" data-linenumber="103">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">      expect(@stat_tracker.worst_coach(&quot;20132014&quot;)).to eq(&quot;Michel Therrien&quot;)</code>
+            <code class="ruby">      expect(@stat_tracker.highest_scoring_visitor).to eq(&quot;Philadelphia Union&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="104">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="105">
+            
+
+            
+
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -10646,17 +10644,19 @@
 
             
 
-            <code class="ruby">      expect(@stat_tracker.worst_coach(&quot;20122013&quot;)).to eq(&quot;John Tortorella&quot;)</code>
+            <code class="ruby">    it &#39;can return the team with the lowest average goals when away&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="107">
+          <li class="covered" data-hits="1" data-linenumber="107">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">      expect(@stat_tracker.lowest_scoring_visitor).to eq(&quot;DC United&quot;)</code>
           </li>
         </div>
       
@@ -10666,7 +10666,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -10676,19 +10676,17 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="110">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="110">
             
 
             
 
-            <code class="ruby">  describe &#39;#team accuracy&#39; do</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -10700,7 +10698,7 @@
 
             
 
-            <code class="ruby">    it &#39;can calculate game stats&#39; do</code>
+            <code class="ruby">  describe &quot;#coach performance&quot; do</code>
           </li>
         </div>
       
@@ -10712,17 +10710,19 @@
 
             
 
-            <code class="ruby">      @stat_tracker.calculate_game_stats</code>
+            <code class="ruby">    it &quot;can return a name of the Coach with the best win percentage for the season&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="113">
+          <li class="covered" data-hits="1" data-linenumber="113">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">      expected = {</code>
+            <code class="ruby">      expect(@stat_tracker.winningest_coach(&quot;20132014&quot;)).to eq(&quot;Barry Trotz&quot;)</code>
           </li>
         </div>
       
@@ -10734,7 +10734,7 @@
 
             
 
-            <code class="ruby">        season_year: &quot;20122013&quot;,</code>
+            <code class="ruby">      expect(@stat_tracker.winningest_coach(&quot;20122013&quot;)).to eq(&quot;Claude Julien&quot;)</code>
           </li>
         </div>
       
@@ -10744,7 +10744,7 @@
 
             
 
-            <code class="ruby">        teams: {</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -10754,54 +10754,48 @@
 
             
 
-            <code class="ruby">          &quot;3&quot; =&gt; { goals: 2, games: 1, shots: 8 }, </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="117">
-            
-
-            
-
-            <code class="ruby">          &quot;6&quot; =&gt; { goals: 3, games: 1, shots: 12 } </code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="118">
-            
-
-            
-
-            <code class="ruby">      }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="119">
-            
-
-            
-
-            <code class="ruby">    }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="120">
+          <li class="covered" data-hits="1" data-linenumber="117">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">      expect(@stat_tracker.calculate_game_stats[&quot;2012030221&quot;]).to eq(expected)</code>
+            <code class="ruby">    it &quot;can return a name of the Coach with the worst win percentage for the season&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="121">
+          <li class="covered" data-hits="1" data-linenumber="118">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(@stat_tracker.worst_coach(&quot;20132014&quot;)).to eq(&quot;Michel Therrien&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="119">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(@stat_tracker.worst_coach(&quot;20122013&quot;)).to eq(&quot;John Tortorella&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="120">
             
 
             
@@ -10811,12 +10805,22 @@
         </div>
       
         <div>
+          <li class="never" data-hits="" data-linenumber="121">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
           <li class="never" data-hits="" data-linenumber="122">
             
 
             
 
-            <code class="ruby">    </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -10828,7 +10832,7 @@
 
             
 
-            <code class="ruby">    it &#39;can calculate season accuracy ratios&#39; do</code>
+            <code class="ruby">  describe &#39;#team accuracy&#39; do</code>
           </li>
         </div>
       
@@ -10840,12 +10844,152 @@
 
             
 
+            <code class="ruby">    it &#39;can calculate game stats&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="125">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      @stat_tracker.calculate_game_stats</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="126">
+            
+
+            
+
+            <code class="ruby">      expected = {</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="127">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        season_year: &quot;20122013&quot;,</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="128">
+            
+
+            
+
+            <code class="ruby">        teams: {</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="129">
+            
+
+            
+
+            <code class="ruby">          &quot;3&quot; =&gt; { goals: 2, games: 1, shots: 8 }, </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="130">
+            
+
+            
+
+            <code class="ruby">          &quot;6&quot; =&gt; { goals: 3, games: 1, shots: 12 } </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="131">
+            
+
+            
+
+            <code class="ruby">      }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="132">
+            
+
+            
+
+            <code class="ruby">    }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="133">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(@stat_tracker.calculate_game_stats[&quot;2012030221&quot;]).to eq(expected)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="134">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="135">
+            
+
+            
+
+            <code class="ruby">    </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="136">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;can calculate season accuracy ratios&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="137">
+            
+              <span class="hits">1</span>
+            
+
+            
+
             <code class="ruby">      @stat_tracker.calculate_season_accuracy_ratios</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="125">
+          <li class="never" data-hits="" data-linenumber="138">
             
 
             
@@ -10855,7 +10999,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="126">
+          <li class="covered" data-hits="1" data-linenumber="139">
             
               <span class="hits">1</span>
             
@@ -10867,7 +11011,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="127">
+          <li class="never" data-hits="" data-linenumber="140">
             
 
             
@@ -10877,7 +11021,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="128">
+          <li class="never" data-hits="" data-linenumber="141">
             
 
             
@@ -10887,7 +11031,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="129">
+          <li class="never" data-hits="" data-linenumber="142">
             
 
             
@@ -10897,7 +11041,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="130">
+          <li class="never" data-hits="" data-linenumber="143">
             
 
             
@@ -10907,7 +11051,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="131">
+          <li class="covered" data-hits="1" data-linenumber="144">
             
               <span class="hits">1</span>
             
@@ -10919,7 +11063,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="132">
+          <li class="never" data-hits="" data-linenumber="145">
             
 
             
@@ -10929,7 +11073,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="133">
+          <li class="never" data-hits="" data-linenumber="146">
             
 
             
@@ -10939,7 +11083,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="134">
+          <li class="covered" data-hits="1" data-linenumber="147">
             
               <span class="hits">1</span>
             
@@ -10951,7 +11095,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="135">
+          <li class="covered" data-hits="1" data-linenumber="148">
             
               <span class="hits">1</span>
             
@@ -10963,7 +11107,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="136">
+          <li class="never" data-hits="" data-linenumber="149">
             
 
             
@@ -10973,7 +11117,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="137">
+          <li class="never" data-hits="" data-linenumber="150">
             
 
             
@@ -10983,7 +11127,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="138">
+          <li class="never" data-hits="" data-linenumber="151">
             
 
             
@@ -10993,7 +11137,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="139">
+          <li class="never" data-hits="" data-linenumber="152">
             
 
             
@@ -11003,7 +11147,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="140">
+          <li class="never" data-hits="" data-linenumber="153">
             
 
             
@@ -11013,156 +11157,12 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="141">
+          <li class="never" data-hits="" data-linenumber="154">
             
 
             
 
             <code class="ruby">      })</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="142">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        allow(@stat_tracker).to receive(:find_team_name).with(&quot;2&quot;).and_return(&quot;FC Dallas&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="143">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">        allow(@stat_tracker).to receive(:find_team_name).with(&quot;3&quot;).and_return(&quot;Houston Dynamo&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="144">
-            
-
-            
-
-            <code class="ruby">  </code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="145">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(@stat_tracker.most_accurate_team(&quot;20122013&quot;)).to eq(&quot;FC Dallas&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="146">
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="147">
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="148">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;can identify the least accurate team in a season&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="149">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(@stat_tracker.least_accurate_team(&quot;20122013&quot;)).to eq(&quot;Houston Dynamo&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="150">
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="151">
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="152">
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="153">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &quot;#tackles&quot; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="154">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &quot;can return the team with the most total tackles based on season&quot; do</code>
           </li>
         </div>
       
@@ -11174,17 +11174,19 @@
 
             
 
-            <code class="ruby">      expect(@stat_tracker.most_tackles(&quot;2012030221&quot;)).to eq(&quot;FC Dallas&quot;)</code>
+            <code class="ruby">        allow(@stat_tracker).to receive(:find_team_name).with(&quot;2&quot;).and_return(&quot;FC Dallas&quot;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="156">
+          <li class="covered" data-hits="1" data-linenumber="156">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">        allow(@stat_tracker).to receive(:find_team_name).with(&quot;3&quot;).and_return(&quot;Houston Dynamo&quot;)</code>
           </li>
         </div>
       
@@ -11194,7 +11196,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  </code>
           </li>
         </div>
       
@@ -11206,24 +11208,12 @@
 
             
 
-            <code class="ruby">    it &quot;can return the team with the fewest total tackles based on season&quot; do</code>
+            <code class="ruby">      expect(@stat_tracker.most_accurate_team(&quot;20122013&quot;)).to eq(&quot;FC Dallas&quot;)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="159">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(@stat_tracker.fewest_tackles(&quot;2012030221&quot;)).to eq(&quot;Atlanta United&quot;)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="160">
+          <li class="never" data-hits="" data-linenumber="159">
             
 
             
@@ -11233,17 +11223,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="161">
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="162">
+          <li class="never" data-hits="" data-linenumber="160">
             
 
             
@@ -11253,14 +11233,36 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="163">
+          <li class="covered" data-hits="1" data-linenumber="161">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  it &quot;can return team_info&quot; do</code>
+            <code class="ruby">    it &#39;can identify the least accurate team in a season&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="162">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(@stat_tracker.least_accurate_team(&quot;20122013&quot;)).to eq(&quot;Houston Dynamo&quot;)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="163">
+            
+
+            
+
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -11270,49 +11272,53 @@
 
             
 
-            <code class="ruby">    info_hash1 = {</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="165">
+          <li class="never" data-hits="" data-linenumber="165">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="166">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">      &quot;team_id&quot; =&gt; &quot;53&quot;, </code>
+            <code class="ruby">  describe &quot;#tackles&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="166">
+          <li class="covered" data-hits="1" data-linenumber="167">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">      &quot;franchise_id&quot; =&gt; &quot;28&quot;, </code>
+            <code class="ruby">    it &quot;can return the team with the most total tackles based on season&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="167">
+          <li class="covered" data-hits="1" data-linenumber="168">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">      &quot;team_name&quot; =&gt; &quot;Columbus Crew SC&quot;,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="168">
-            
-
-            
-
-            <code class="ruby">      &quot;abbreviation&quot; =&gt; &quot;CCS&quot;,</code>
+            <code class="ruby">      expect(@stat_tracker.most_tackles(&quot;2012030221&quot;)).to eq(&quot;FC Dallas&quot;)</code>
           </li>
         </div>
       
@@ -11322,7 +11328,7 @@
 
             
 
-            <code class="ruby">      &quot;link&quot; =&gt; &quot;/api/v1/teams/53&quot;</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -11332,17 +11338,19 @@
 
             
 
-            <code class="ruby">      }</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="171">
+          <li class="covered" data-hits="1" data-linenumber="171">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    info_hash2= {</code>
+            <code class="ruby">    it &quot;can return the team with the fewest total tackles based on season&quot; do</code>
           </li>
         </div>
       
@@ -11354,7 +11362,7 @@
 
             
 
-            <code class="ruby">      &quot;team_id&quot; =&gt; &quot;1&quot;, </code>
+            <code class="ruby">      expect(@stat_tracker.fewest_tackles(&quot;2012030221&quot;)).to eq(&quot;Atlanta United&quot;)</code>
           </li>
         </div>
       
@@ -11364,7 +11372,7 @@
 
             
 
-            <code class="ruby">      &quot;franchise_id&quot; =&gt; &quot;23&quot;, </code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -11374,7 +11382,7 @@
 
             
 
-            <code class="ruby">      &quot;team_name&quot; =&gt; &quot;Atlanta United&quot;,</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -11384,61 +11392,63 @@
 
             
 
-            <code class="ruby">      &quot;abbreviation&quot; =&gt; &quot;ATL&quot;,</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="176">
-            
-
-            
-
-            <code class="ruby">      &quot;link&quot; =&gt; &quot;/api/v1/teams/1&quot;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="177">
-            
-
-            
-
-            <code class="ruby">      }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="178">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    expect(@stat_tracker.team_info(&quot;53&quot;)).to eq(info_hash1)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="179">
-            
-
-            
-
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="180">
+          <li class="covered" data-hits="1" data-linenumber="176">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    expect(@stat_tracker.team_info(&quot;1&quot;)).to eq(info_hash2)</code>
+            <code class="ruby">  describe &quot;#team_info and #team_stats&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="177">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &quot;can return team_info&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="178">
+            
+
+            
+
+            <code class="ruby">      info_hash1 = {</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="179">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">        &quot;team_id&quot; =&gt; &quot;53&quot;, </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="180">
+            
+
+            
+
+            <code class="ruby">      &quot;franchise_id&quot; =&gt; &quot;28&quot;, </code>
           </li>
         </div>
       
@@ -11448,7 +11458,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">        &quot;team_name&quot; =&gt; &quot;Columbus Crew SC&quot;,</code>
           </li>
         </div>
       
@@ -11458,53 +11468,49 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">        &quot;abbreviation&quot; =&gt; &quot;CCS&quot;,</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="183">
+          <li class="never" data-hits="" data-linenumber="183">
+            
+
+            
+
+            <code class="ruby">        &quot;link&quot; =&gt; &quot;/api/v1/teams/53&quot;</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="184">
+            
+
+            
+
+            <code class="ruby">        }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="185">
+            
+
+            
+
+            <code class="ruby">      info_hash2= {</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="186">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  describe &#39;#season stats&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="184">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;can determine a teams best season&#39;do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="185">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(@stat_tracker.best_season(3)).to eq(nil)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="186">
-            
-
-            
-
-            <code class="ruby">    end</code>
+            <code class="ruby">        &quot;team_id&quot; =&gt; &quot;1&quot;, </code>
           </li>
         </div>
       
@@ -11514,31 +11520,27 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">        &quot;franchise_id&quot; =&gt; &quot;23&quot;, </code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="188">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="188">
             
 
             
 
-            <code class="ruby">    it &#39;can determine a teams worst season&#39; do</code>
+            <code class="ruby">        &quot;team_name&quot; =&gt; &quot;Atlanta United&quot;,</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="189">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="189">
             
 
             
 
-            <code class="ruby">      expect(@stat_tracker.worst_season(&quot;6&quot;)).to eq &quot;20122013&quot;</code>
+            <code class="ruby">        &quot;abbreviation&quot; =&gt; &quot;ATL&quot;,</code>
           </li>
         </div>
       
@@ -11548,7 +11550,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">        &quot;link&quot; =&gt; &quot;/api/v1/teams/1&quot;</code>
           </li>
         </div>
       
@@ -11558,29 +11560,29 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">        }</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="192">
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="193">
+          <li class="covered" data-hits="1" data-linenumber="192">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  describe &quot;#most and #fewest goals scored&quot; do</code>
+            <code class="ruby">      expect(@stat_tracker.team_info(&quot;53&quot;)).to eq(info_hash1)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="193">
+            
+
+            
+
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -11592,36 +11594,12 @@
 
             
 
-            <code class="ruby">    it &#39;can return the most goals scored&#39; do</code>
+            <code class="ruby">      expect(@stat_tracker.team_info(&quot;1&quot;)).to eq(info_hash2)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="195">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(@stat_tracker.most_goals_scored(&quot;6&quot;)).to eq(3)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="196">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(@stat_tracker.most_goals_scored(&quot;8&quot;)).to eq(4)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="197">
+          <li class="never" data-hits="" data-linenumber="195">
             
 
             
@@ -11631,12 +11609,34 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="198">
+          <li class="never" data-hits="" data-linenumber="196">
             
 
             
 
             <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="197">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &quot;calculates a team&#39;s stats by season&quot; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="198">
+            
+
+            
+
+            <code class="ruby">      hash_team_6 =</code>
           </li>
         </div>
       
@@ -11648,31 +11648,27 @@
 
             
 
-            <code class="ruby">    it &#39;can return the fewest goals scored&#39; do</code>
+            <code class="ruby">      {&quot;20122013&quot;=&gt;</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="200">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="200">
             
 
             
 
-            <code class="ruby">        expect(@stat_tracker.fewest_goals_scored(&quot;6&quot;)).to eq(2)</code>
+            <code class="ruby">    {:postseason=&gt;</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="201">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="201">
             
 
             
 
-            <code class="ruby">        expect(@stat_tracker.fewest_goals_scored(&quot;8&quot;)).to eq(1)</code>
+            <code class="ruby">    {:win_percentage=&gt;1.0,</code>
           </li>
         </div>
       
@@ -11682,7 +11678,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">      :total_goals_scored=&gt;14,</code>
           </li>
         </div>
       
@@ -11692,7 +11688,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">      :total_goals_against=&gt;8,</code>
           </li>
         </div>
       
@@ -11702,55 +11698,47 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">      :average_goals_scored=&gt;2.8,</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="205">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="205">
             
 
             
 
-            <code class="ruby">  describe &quot;#favorite_opponent and #rival by team&quot; do</code>
+            <code class="ruby">      :average_goals_against=&gt;1.6}},</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="206">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="206">
             
 
             
 
-            <code class="ruby">    it &quot;can provide team of the opponent with the lowest win percentage against team provided&quot; do</code>
+            <code class="ruby">    &quot;20162017&quot;=&gt;</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="207">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="207">
             
 
             
 
-            <code class="ruby">      expect(@stat_tracker.favorite_opponent(&quot;8&quot;)).to eq(&quot;Seattle Sounders FC&quot;)</code>
+            <code class="ruby">    {:regular_season=&gt;</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="208">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="208">
             
 
             
 
-            <code class="ruby">      expect(@stat_tracker.favorite_opponent(&quot;6&quot;)).to eq(&quot;Houston Dynamo&quot;)</code>
+            <code class="ruby">    {:win_percentage=&gt;0.0,</code>
           </li>
         </div>
       
@@ -11760,7 +11748,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">      :total_goals_scored=&gt;2,</code>
           </li>
         </div>
       
@@ -11770,43 +11758,37 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">      :total_goals_against=&gt;3,</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="211">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="211">
             
 
             
 
-            <code class="ruby">    it &quot;can provide team of the opponent with the highest win percentage against team provided&quot; do</code>
+            <code class="ruby">      :average_goals_scored=&gt;2.0,</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="212">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="212">
             
 
             
 
-            <code class="ruby">    expect(@stat_tracker.rival(&quot;8&quot;)).to eq(&quot;Chicago Fire&quot;)</code>
+            <code class="ruby">      :average_goals_against=&gt;3.0}},</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="213">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="213">
             
 
             
 
-            <code class="ruby">    expect(@stat_tracker.rival(&quot;6&quot;)).to eq(&quot;Sporting Kansas City&quot;)</code>
+            <code class="ruby">    &quot;20132014&quot;=&gt;</code>
           </li>
         </div>
       
@@ -11816,7 +11798,7 @@
 
             
 
-            <code class="ruby">    end</code>
+            <code class="ruby">    {:regular_season=&gt;</code>
           </li>
         </div>
       
@@ -11826,7 +11808,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">    {:win_percentage=&gt;1.0,</code>
           </li>
         </div>
       
@@ -11836,31 +11818,27 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">      :total_goals_scored=&gt;2,</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="217">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="217">
             
 
             
 
-            <code class="ruby">  it &#39;identifies a teams biggest blowout&#39; do</code>
+            <code class="ruby">      :total_goals_against=&gt;1,</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="218">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="218">
             
 
             
 
-            <code class="ruby">    expect(@stat_tracker.biggest_team_blowout(6)).to eq(1)</code>
+            <code class="ruby">      :average_goals_scored=&gt;2.0,</code>
           </li>
         </div>
       
@@ -11870,7 +11848,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">      :average_goals_against=&gt;1.0}},</code>
           </li>
         </div>
       
@@ -11880,31 +11858,27 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">    &quot;20172018&quot;=&gt;</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="221">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="221">
             
 
             
 
-            <code class="ruby">  it &#39;identifies a teams worst loss&#39; do</code>
+            <code class="ruby">    {:regular_season=&gt;</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="222">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="222">
             
 
             
 
-            <code class="ruby">    expect(@stat_tracker.worst_loss(3)).to eq(1)</code>
+            <code class="ruby">    {:win_percentage=&gt;0.0,</code>
           </li>
         </div>
       
@@ -11914,7 +11888,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">      :total_goals_scored=&gt;3,</code>
           </li>
         </div>
       
@@ -11924,31 +11898,27 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">      :total_goals_against=&gt;3,</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="225">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="225">
             
 
             
 
-            <code class="ruby">  it &#39;can give win percentages for a team against all other teams&#39; do</code>
+            <code class="ruby">      :average_goals_scored=&gt;3.0,</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="226">
-            
-              <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="226">
             
 
             
 
-            <code class="ruby">    hash={&quot;Chicago Fire&quot;=&gt;0.0, &quot;Orlando Pride&quot;=&gt;0.0, &quot;Seattle Sounders FC&quot;=&gt;1.0}</code>
+            <code class="ruby">      :average_goals_against=&gt;3.0}}}</code>
           </li>
         </div>
       
@@ -11960,7 +11930,7 @@
 
             
 
-            <code class="ruby">    expect(@stat_tracker.head_to_head(&quot;8&quot;)).to eq(hash)</code>
+            <code class="ruby">      expect(@stat_tracker.seasonal_summary(&quot;6&quot;)).to eq(hash_team_6)</code>
           </li>
         </div>
       
@@ -11970,7 +11940,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -11980,29 +11950,29 @@
 
             
 
-            <code class="ruby">    </code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="230">
+          <li class="never" data-hits="" data-linenumber="230">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="231">
             
               <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  it &quot;calculates a team&#39;s stats by season&quot; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="231">
-            
-
-            
-
-            <code class="ruby">    hash_team_6 =</code>
+            <code class="ruby">  describe &#39;#season stats&#39; do</code>
           </li>
         </div>
       
@@ -12014,17 +11984,19 @@
 
             
 
-            <code class="ruby">    {&quot;20122013&quot;=&gt;</code>
+            <code class="ruby">    it &#39;can determine a teams best season&#39;do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="233">
+          <li class="covered" data-hits="1" data-linenumber="233">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  {:postseason=&gt;</code>
+            <code class="ruby">      expect(@stat_tracker.best_season(3)).to eq(nil)</code>
           </li>
         </div>
       
@@ -12034,7 +12006,7 @@
 
             
 
-            <code class="ruby">  {:win_percentage=&gt;1.0,</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -12044,27 +12016,31 @@
 
             
 
-            <code class="ruby">    :total_goals_scored=&gt;14,</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="236">
+          <li class="covered" data-hits="1" data-linenumber="236">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    :total_goals_against=&gt;8,</code>
+            <code class="ruby">    it &#39;can determine a teams worst season&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="237">
+          <li class="covered" data-hits="1" data-linenumber="237">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    :average_goals_scored=&gt;2.8,</code>
+            <code class="ruby">      expect(@stat_tracker.worst_season(&quot;6&quot;)).to eq &quot;20122013&quot;</code>
           </li>
         </div>
       
@@ -12074,7 +12050,7 @@
 
             
 
-            <code class="ruby">    :average_goals_against=&gt;1.6}},</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -12084,7 +12060,7 @@
 
             
 
-            <code class="ruby">  &quot;20162017&quot;=&gt;</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -12094,47 +12070,55 @@
 
             
 
-            <code class="ruby">  {:regular_season=&gt;</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="241">
+          <li class="covered" data-hits="1" data-linenumber="241">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  {:win_percentage=&gt;0.0,</code>
+            <code class="ruby">  describe &quot;#most and #fewest goals scored&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="242">
+          <li class="covered" data-hits="1" data-linenumber="242">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    :total_goals_scored=&gt;2,</code>
+            <code class="ruby">    it &#39;can return the most goals scored&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="243">
+          <li class="covered" data-hits="1" data-linenumber="243">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    :total_goals_against=&gt;3,</code>
+            <code class="ruby">      expect(@stat_tracker.most_goals_scored(&quot;6&quot;)).to eq(3)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="244">
+          <li class="covered" data-hits="1" data-linenumber="244">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    :average_goals_scored=&gt;2.0,</code>
+            <code class="ruby">      expect(@stat_tracker.most_goals_scored(&quot;8&quot;)).to eq(4)</code>
           </li>
         </div>
       
@@ -12144,7 +12128,7 @@
 
             
 
-            <code class="ruby">    :average_goals_against=&gt;3.0}},</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -12154,37 +12138,43 @@
 
             
 
-            <code class="ruby">  &quot;20132014&quot;=&gt;</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="247">
+          <li class="covered" data-hits="1" data-linenumber="247">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  {:regular_season=&gt;</code>
+            <code class="ruby">    it &#39;can return the fewest goals scored&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="248">
+          <li class="covered" data-hits="1" data-linenumber="248">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  {:win_percentage=&gt;1.0,</code>
+            <code class="ruby">        expect(@stat_tracker.fewest_goals_scored(&quot;6&quot;)).to eq(2)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="249">
+          <li class="covered" data-hits="1" data-linenumber="249">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    :total_goals_scored=&gt;2,</code>
+            <code class="ruby">        expect(@stat_tracker.fewest_goals_scored(&quot;8&quot;)).to eq(1)</code>
           </li>
         </div>
       
@@ -12194,7 +12184,7 @@
 
             
 
-            <code class="ruby">    :total_goals_against=&gt;1,</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -12204,7 +12194,7 @@
 
             
 
-            <code class="ruby">    :average_goals_scored=&gt;2.0,</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -12214,47 +12204,55 @@
 
             
 
-            <code class="ruby">    :average_goals_against=&gt;1.0}},</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="253">
+          <li class="covered" data-hits="1" data-linenumber="253">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  &quot;20172018&quot;=&gt;</code>
+            <code class="ruby">  describe &quot;#favorite_opponent and #rival by team&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="254">
+          <li class="covered" data-hits="1" data-linenumber="254">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  {:regular_season=&gt;</code>
+            <code class="ruby">    it &quot;can provide team of the opponent with the lowest win percentage against team provided&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="255">
+          <li class="covered" data-hits="1" data-linenumber="255">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  {:win_percentage=&gt;0.0,</code>
+            <code class="ruby">      expect(@stat_tracker.favorite_opponent(&quot;8&quot;)).to eq(&quot;Seattle Sounders FC&quot;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="256">
+          <li class="covered" data-hits="1" data-linenumber="256">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    :total_goals_scored=&gt;3,</code>
+            <code class="ruby">      expect(@stat_tracker.favorite_opponent(&quot;6&quot;)).to eq(&quot;Houston Dynamo&quot;)</code>
           </li>
         </div>
       
@@ -12264,7 +12262,7 @@
 
             
 
-            <code class="ruby">    :total_goals_against=&gt;3,</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -12274,17 +12272,19 @@
 
             
 
-            <code class="ruby">    :average_goals_scored=&gt;3.0,</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="259">
+          <li class="covered" data-hits="1" data-linenumber="259">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    :average_goals_against=&gt;3.0}}}</code>
+            <code class="ruby">    it &quot;can provide team of the opponent with the highest win percentage against team provided&quot; do</code>
           </li>
         </div>
       
@@ -12296,17 +12296,19 @@
 
             
 
-            <code class="ruby">    expect(@stat_tracker.seasonal_summary(&quot;6&quot;)).to eq(hash_team_6)</code>
+            <code class="ruby">    expect(@stat_tracker.rival(&quot;8&quot;)).to eq(&quot;Chicago Fire&quot;)</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="261">
+          <li class="covered" data-hits="1" data-linenumber="261">
+            
+              <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby">    expect(@stat_tracker.rival(&quot;6&quot;)).to eq(&quot;Sporting Kansas City&quot;)</code>
           </li>
         </div>
       
@@ -12316,31 +12318,27 @@
 
             
 
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="263">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="264">
+            
+
+            
+
             <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="263">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  describe &quot;#average_win_percentage&quot; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="264">
-            
-              <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;can return the average win percentage of all games for a team&#39; do</code>
           </li>
         </div>
       
@@ -12352,12 +12350,36 @@
 
             
 
-            <code class="ruby">      expect(@stat_tracker.average_win_percentage(3)).to eq(0.25)</code>
+            <code class="ruby">  describe &quot;#team best and worst&quot; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="266">
+          <li class="covered" data-hits="1" data-linenumber="266">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;identifies a teams biggest blowout&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="267">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(@stat_tracker.biggest_team_blowout(6)).to eq(1)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="268">
             
 
             
@@ -12367,7 +12389,51 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="267">
+          <li class="never" data-hits="" data-linenumber="269">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="270">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;identifies a teams worst loss&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="271">
+            
+              <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(@stat_tracker.worst_loss(3)).to eq(1)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="272">
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="273">
             
 
             
@@ -12377,7 +12443,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="268">
+          <li class="never" data-hits="" data-linenumber="274">
             
 
             
