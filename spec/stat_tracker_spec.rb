@@ -109,18 +109,18 @@ RSpec.describe StatTracker do
   end
 
   describe "#coach performance" do
-    it "can return a name of the Coach with the best win percentage for the season" do
+    it 'can return a name of the Coach with the best win percentage for the season' do
       expect(@stat_tracker.winningest_coach("20132014")).to eq("Barry Trotz")
       expect(@stat_tracker.winningest_coach("20122013")).to eq("Claude Julien")
     end
 
-    it "can return a name of the Coach with the worst win percentage for the season" do
+    it 'can return a name of the Coach with the worst win percentage for the season' do
       expect(@stat_tracker.worst_coach("20132014")).to eq("Michel Therrien")
       expect(@stat_tracker.worst_coach("20122013")).to eq("John Tortorella")
     end
   end
 
-  describe '#team accuracy' do
+  describe "#team accuracy" do
     it 'can calculate game stats' do
       @stat_tracker.calculate_game_stats
       expected = {
@@ -164,17 +164,17 @@ RSpec.describe StatTracker do
   end
 
   describe "#tackles" do
-    it "can return the team with the most total tackles based on season" do
+    it 'can return the team with the most total tackles based on season' do
       expect(@stat_tracker.most_tackles("2012030221")).to eq("FC Dallas")
     end
 
-    it "can return the team with the fewest total tackles based on season" do
+    it 'can return the team with the fewest total tackles based on season' do
       expect(@stat_tracker.fewest_tackles("2012030221")).to eq("Atlanta United")
     end
   end
 
   describe "#team_info and #team_stats" do
-    it "can return team_info" do
+    it 'can return team_info' do
       info_hash1 = {
         "team_id" => "53", 
       "franchise_id" => "28", 
@@ -194,7 +194,7 @@ RSpec.describe StatTracker do
       expect(@stat_tracker.team_info("1")).to eq(info_hash2)
     end
 
-    it "calculates a team's stats by season" do
+    it 'calculates a teams stats by season' do
       hash_team_6 =
       {"20122013"=>
     {:postseason=>
@@ -228,7 +228,7 @@ RSpec.describe StatTracker do
     end
   end
 
-  describe '#season stats' do
+  describe "#season stats" do
     it 'can determine a teams best season'do
       expect(@stat_tracker.best_season(3)).to eq(nil)
     end
@@ -251,12 +251,12 @@ RSpec.describe StatTracker do
   end
 
   describe "#favorite_opponent and #rival by team" do
-    it "can provide team of the opponent with the lowest win percentage against team provided" do
+    it 'can provide team of the opponent with the lowest win percentage against team provided' do
       expect(@stat_tracker.favorite_opponent("8")).to eq("Seattle Sounders FC")
       expect(@stat_tracker.favorite_opponent("6")).to eq("Houston Dynamo")
     end
 
-    it "can provide team of the opponent with the highest win percentage against team provided" do
+    it 'can provide team of the opponent with the highest win percentage against team provided' do
     expect(@stat_tracker.rival("8")).to eq("Chicago Fire")
     expect(@stat_tracker.rival("6")).to eq("Sporting Kansas City")
     end
