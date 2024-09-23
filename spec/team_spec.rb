@@ -5,7 +5,6 @@ require './lib/stat_tracker'
 RSpec.describe Team do
     before(:each) do
         @team = Team.new(1,23,"Atlanta United","ATL","Mercedes-Benz Stadium","/api/v1/teams/1")
-        # require 'pry'; binding.pry
     end
 
     describe '#initialze' do
